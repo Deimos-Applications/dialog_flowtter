@@ -8,7 +8,7 @@
     <img alt="Pub Package" src="https://img.shields.io/pub/v/dialog_flowtter.svg">
   </a>
   <a href="https://github.com/Deimos-Applications/dialog_flowtter">
-    <img src="https://img.shields.io/github/stars//Deimos-Applications/dialog_flowtter.svg?style=flat&logo=github&colorB=deeppink&label=stars" alt="Star on GitHub">
+    <img src="https://img.shields.io/github/stars/Deimos-Applications/dialog_flowtter.svg?style=flat&logo=github&colorB=deeppink&label=stars" alt="Star on GitHub">
   </a>
   <a href="https://github.com/tenhobi/effective_dart">
     <img alt="style: effective dart" src="https://img.shields.io/badge/style-effective_dart-40c4ff.svg">
