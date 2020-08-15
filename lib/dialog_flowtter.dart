@@ -1,6 +1,5 @@
 library dialog_flowtter;
 
-export './src/auth.dart';
 export './src/dialog.dart';
 export './src/models/detect_intent_response.dart';
 export './src/models/follow_up_intent_info.dart';

@@ -17,3 +17,4 @@ samples, guidance on mobile development, and a full API reference.
 
 - [ ] Secure DialogFlow auth JSON
 - [ ] Support audio queries
+- [ ] Add a catalog of supported languages
