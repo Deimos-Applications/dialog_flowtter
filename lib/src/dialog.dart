@@ -49,7 +49,13 @@ class DialogFlowtter {
   final String jsonPath;
 
   AutoRefreshingAuthClient _client;
-  String _projectId;
+
+  /// The associated [projectId]
+  ///
+  /// If not specified, it would be obtained from the JSON given
+  ///
+  /// You can override this at any time given and the plugin with use it
+  String projectId;
 
   DialogFlowtter({
     this.sessionId = _kDefaultSessionId,
@@ -75,7 +81,7 @@ class DialogFlowtter {
           'Remember to add the file to your pubspec.yaml',
         );
       }
-      _projectId = json['project_id'];
+      projectId ??= json['project_id'];
       _client = await getClient(json);
     }
 
@@ -86,7 +92,7 @@ class DialogFlowtter {
     );
 
     var response = await _client.post(
-      '$kDialogFlowUrl/$kDialogFlowApiVersion/${_getFormatedSession(_projectId, sessionId)}:detectIntent',
+      '$kDialogFlowUrl/$kDialogFlowApiVersion/${_getFormatedSession(projectId, sessionId)}:detectIntent',
       body: jsonEncode(body),
     );
 
@@ -139,7 +145,4 @@ class DialogFlowtter {
     );
     return client;
   }
-
-  /// The associated [projectId] obtained from the JSON given
-  String get projectId => _projectId;
 }
