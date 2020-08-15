@@ -22,3 +22,5 @@ dev_dependencies:
     build_runner: ^1.10.1
     json_serializable: ^3.2.5
 flutter:
+    assets:
+        - assets/dialog_flow_auth.json

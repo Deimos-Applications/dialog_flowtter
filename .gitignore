@@ -76,3 +76,4 @@ build/
 
 # VsCode
 .vscode
+assets/dialog_flow_auth.json
