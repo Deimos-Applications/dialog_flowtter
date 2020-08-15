@@ -20,14 +20,14 @@ part 'query_input.g.dart';
 /// {@endtemplate}
 class QueryInput extends Equatable {
   /// The natural language text to be processed.
-  final TextInput textInput;
+  final TextInput text;
 
   /// The event to be processed.
   final EventInput eventInput;
 
   /// {@macro query_input_template}
   QueryInput({
-    this.textInput,
+    this.text,
     this.eventInput,
   });
 
@@ -40,7 +40,7 @@ class QueryInput extends Equatable {
 
   @override
   List<Object> get props => [
-        textInput,
+        text,
         eventInput,
       ];
 }

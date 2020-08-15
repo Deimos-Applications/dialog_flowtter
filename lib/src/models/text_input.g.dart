@@ -13,7 +13,16 @@ TextInput _$TextInputFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$TextInputToJson(TextInput instance) => <String, dynamic>{
-      'text': instance.text,
-      'languageCode': instance.languageCode,
-    };
+Map<String, dynamic> _$TextInputToJson(TextInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('text', instance.text);
+  writeNotNull('languageCode', instance.languageCode);
+  return val;
+}

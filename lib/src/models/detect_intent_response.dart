@@ -1,6 +1,11 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'output_audio_config.dart';
 import 'query_result.dart';
+
+part 'detect_intent_response.g.dart';
+
+@JsonSerializable()
 
 /// {@template detect_intent_response_template}
 /// The message returned from the sessions.detectIntent method.
@@ -27,26 +32,11 @@ class DetectIntentResponse extends Equatable {
   });
 
   ///
-  factory DetectIntentResponse.fromJson(Map<String, dynamic> json) {
-    return DetectIntentResponse(
-      responseId: json['responseId'],
-      queryResult: json['queryResult'] != null
-          ? QueryResult.fromJson(json['queryResult'])
-          : null,
-      outputAudioConfig: json['outputAudioConfig'] != null
-          ? OutputAudioConfig.fromJson(json['outputAudioConfig'])
-          : null,
-    );
-  }
+  factory DetectIntentResponse.fromJson(Map<String, dynamic> json) =>
+      _$DetectIntentResponseFromJson(json);
 
   ///
-  Map<String, dynamic> toJson() {
-    return {
-      'responseId': responseId,
-      'queryResul': queryResult.toJson(),
-      'outputAudioConfig': outputAudioConfig.toJson(),
-    };
-  }
+  Map<String, dynamic> toJson() => _$DetectIntentResponseToJson(this);
 
   @override
   List<Object> get props => [

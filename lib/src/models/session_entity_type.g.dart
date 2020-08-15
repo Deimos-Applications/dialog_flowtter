@@ -18,13 +18,22 @@ SessionEntityType _$SessionEntityTypeFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$SessionEntityTypeToJson(SessionEntityType instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'entityOverrideMode':
-          _$EntityOverrideModeEnumMap[instance.entityOverrideMode],
-      'entities': instance.entities,
-    };
+Map<String, dynamic> _$SessionEntityTypeToJson(SessionEntityType instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('name', instance.name);
+  writeNotNull('entityOverrideMode',
+      _$EntityOverrideModeEnumMap[instance.entityOverrideMode]);
+  writeNotNull(
+      'entities', instance.entities?.map((e) => e?.toJson())?.toList());
+  return val;
+}
 
 T _$enumDecode<T>(
   Map<T, dynamic> enumValues,

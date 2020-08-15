@@ -31,13 +31,24 @@ QueryParameters _$QueryParametersFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$QueryParametersToJson(QueryParameters instance) =>
-    <String, dynamic>{
-      'timeZone': instance.timeZone,
-      'geoLocation': instance.geoLocation,
-      'contexts': instance.contexts,
-      'resetContexts': instance.resetContexts,
-      'sessionEntityTypes': instance.sessionEntityTypes,
-      'payload': instance.payload,
-      'sentimentAnalysisRequestConfig': instance.sentimentAnalysisRequestConfig,
-    };
+Map<String, dynamic> _$QueryParametersToJson(QueryParameters instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('timeZone', instance.timeZone);
+  writeNotNull('geoLocation', instance.geoLocation?.toJson());
+  writeNotNull(
+      'contexts', instance.contexts?.map((e) => e?.toJson())?.toList());
+  writeNotNull('resetContexts', instance.resetContexts);
+  writeNotNull('sessionEntityTypes',
+      instance.sessionEntityTypes?.map((e) => e?.toJson())?.toList());
+  writeNotNull('payload', instance.payload);
+  writeNotNull('sentimentAnalysisRequestConfig',
+      instance.sentimentAnalysisRequestConfig?.toJson());
+  return val;
+}

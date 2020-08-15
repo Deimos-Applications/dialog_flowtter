@@ -14,7 +14,15 @@ SentimentAnalysisRequestConfig _$SentimentAnalysisRequestConfigFromJson(
 }
 
 Map<String, dynamic> _$SentimentAnalysisRequestConfigToJson(
-        SentimentAnalysisRequestConfig instance) =>
-    <String, dynamic>{
-      'analyzeQueryTextSentiment': instance.analyzeQueryTextSentiment,
-    };
+    SentimentAnalysisRequestConfig instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('analyzeQueryTextSentiment', instance.analyzeQueryTextSentiment);
+  return val;
+}

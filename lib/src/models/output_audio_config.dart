@@ -1,4 +1,9 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'output_audio_config.g.dart';
+
+@JsonSerializable()
 
 /// {@template output_audio_config_template}
 /// Instructs the speech synthesizer on how to generate the output audio
@@ -34,22 +39,11 @@ class OutputAudioConfig extends Equatable {
   });
 
   ///
-  factory OutputAudioConfig.fromJson(Map<String, dynamic> json) {
-    return OutputAudioConfig(
-      outputAudioEncodig: json['outputAudioEncoding'] as String,
-      sampleRateHertz: json['sampleRateHertz'] as int,
-      synthesizeSpeechConfig: json['synthesizeSpeechConfig'],
-    );
-  }
+  factory OutputAudioConfig.fromJson(Map<String, dynamic> json) =>
+      _$OutputAudioConfigFromJson(json);
 
   ///
-  Map<String, dynamic> toJson() {
-    return {
-      'outputAudioEncodig': outputAudioEncodig,
-      'sampleRateHertz': sampleRateHertz,
-      'synthesizeSpeechConfig': synthesizeSpeechConfig,
-    };
-  }
+  Map<String, dynamic> toJson() => _$OutputAudioConfigToJson(this);
 
   @override
   List<Object> get props => [

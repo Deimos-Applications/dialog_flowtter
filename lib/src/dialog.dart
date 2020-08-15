@@ -79,17 +79,37 @@ class DialogFlowtter {
       _client = await getClient(json);
     }
 
+    var body = _getBody(
+      queryParams: queryParams,
+      queryInput: queryInput,
+      audioConfig: audioConfig,
+    );
+
     var response = await _client.post(
       '$kDialogFlowUrl/$kDialogFlowApiVersion/${_getFormatedSession(_projectId, sessionId)}:detectIntent',
-      body: {
-        'queryParams': queryParams,
-        'queryInput': queryInput,
-        'outputAudioConfig': audioConfig,
-      },
+      body: jsonEncode(body),
     );
-    print(response.body);
+
     Map<String, dynamic> json = await jsonDecode(response.body);
     return DetectIntentResponse.fromJson(json);
+  }
+
+  Map<String, dynamic> _getBody({
+    QueryParameters queryParams,
+    QueryInput queryInput,
+    OutputAudioConfig audioConfig,
+  }) {
+    Map<String, dynamic> body = {};
+    if (queryParams != null) {
+      body['queryParams'] = queryParams.toJson();
+    }
+    if (queryInput != null) {
+      body['queryInput'] = queryInput.toJson();
+    }
+    if (audioConfig != null) {
+      body['audioConfig'] = audioConfig.toJson();
+    }
+    return body;
   }
 
   String _getFormatedSession(String projectId, String sessionId) {

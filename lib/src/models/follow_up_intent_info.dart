@@ -1,4 +1,9 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'follow_up_intent_info.g.dart';
+
+@JsonSerializable()
 
 /// {@template follow_up_intent_info_template}
 /// Represents a single followup intent in the chain.
@@ -17,20 +22,11 @@ class FollowUpIntentInfo extends Equatable {
   });
 
   ///
-  factory FollowUpIntentInfo.fromJson(Map<String, dynamic> json) {
-    return FollowUpIntentInfo(
-      followUpIntentName: json['followupIntentName'],
-      parentFollowUpIntentName: json['parentFollowupIntentName'],
-    );
-  }
+  factory FollowUpIntentInfo.fromJson(Map<String, dynamic> json) =>
+      _$FollowUpIntentInfoFromJson(json);
 
   ///
-  Map<String, dynamic> toJson() {
-    return {
-      'followupIntentName': followUpIntentName,
-      'parentFollowupIntentName': parentFollowUpIntentName,
-    };
-  }
+  Map<String, dynamic> toJson() => _$FollowUpIntentInfoToJson(this);
 
   @override
   List<Object> get props => [

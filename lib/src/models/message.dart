@@ -1,5 +1,10 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'text.dart';
+
+part 'message.g.dart';
+
+@JsonSerializable()
 
 // TODO: Complete model
 /// {@template message_template}
@@ -7,7 +12,7 @@ import 'text.dart';
 /// {@endtemplate}
 class Message extends Equatable {
   /// The text response.
-  final Text text;
+  final DialogText text;
 
   /// {@macro message_template}
   Message({
@@ -15,18 +20,11 @@ class Message extends Equatable {
   });
 
   ///
-  factory Message.fromJson(Map<String, dynamic> json) {
-    return Message(
-      text: json['text'] != null ? Text.fromJson(json['text']) : null,
-    );
-  }
+  factory Message.fromJson(Map<String, dynamic> json) =>
+      _$MessageFromJson(json);
 
   ///
-  Map<String, dynamic> toJson() {
-    return {
-      'text': text,
-    };
-  }
+  Map<String, dynamic> toJson() => _$MessageToJson(this);
 
   @override
   List<Object> get props => [

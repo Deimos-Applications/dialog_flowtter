@@ -1,6 +1,11 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import 'follow_up_intent_info.dart';
+
+part 'intent.g.dart';
+
+@JsonSerializable()
 
 // TODO: Complete model
 /// {@template intent_template}
@@ -63,34 +68,10 @@ class Intent extends Equatable {
   });
 
   ///
-  factory Intent.fromJson(Map<String, dynamic> json) {
-    return Intent(
-      name: json['name'],
-      displayName: json['displayName'],
-      priority: json['priority'],
-      isFallback: json['isFallback'],
-      action: json['action'],
-      resetContexts: json['resetContexts'],
-      rootFollowupIntentName: json['rootFollowupIntentName'],
-      parentFollowUpIntentName: json['parentFollowupIntentName'],
-      followUpIntentInfo: json['followupIntentInfo'],
-    );
-  }
+  factory Intent.fromJson(Map<String, dynamic> json) => _$IntentFromJson(json);
 
   ///
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'displayName': displayName,
-      'priority': priority,
-      'isFallback': isFallback,
-      'action': action,
-      'resetContexts': resetContexts,
-      'rootFollowupIntentName': rootFollowupIntentName,
-      'parentFollowupIntentName': parentFollowUpIntentName,
-      'followupIntentInfo': followUpIntentInfo,
-    };
-  }
+  Map<String, dynamic> toJson() => _$IntentToJson(this);
 
   @override
   List<Object> get props => [

@@ -13,7 +13,16 @@ LatLng _$LatLngFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$LatLngToJson(LatLng instance) => <String, dynamic>{
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-    };
+Map<String, dynamic> _$LatLngToJson(LatLng instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('latitude', instance.latitude);
+  writeNotNull('longitude', instance.longitude);
+  return val;
+}

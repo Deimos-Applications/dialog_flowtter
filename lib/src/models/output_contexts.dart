@@ -1,4 +1,9 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'output_contexts.g.dart';
+
+@JsonSerializable()
 
 /// {@template context_template}
 /// Dialogflow contexts are similar to natural language context.
@@ -60,22 +65,11 @@ class Context extends Equatable {
   });
 
   ///
-  factory Context.fromJson(Map<String, dynamic> json) {
-    return Context(
-      name: json['name'],
-      lifespanCount: json['lifespanCount'],
-      parameters: json['parameters'],
-    );
-  }
+  factory Context.fromJson(Map<String, dynamic> json) =>
+      _$ContextFromJson(json);
 
   ///
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'lifespanCount': lifespanCount,
-      'parameters': parameters,
-    };
-  }
+  Map<String, dynamic> toJson() => _$ContextToJson(this);
 
   @override
   List<Object> get props => [

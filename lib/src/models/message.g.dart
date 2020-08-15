@@ -1,23 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'query_input.dart';
+part of 'message.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-QueryInput _$QueryInputFromJson(Map<String, dynamic> json) {
-  return QueryInput(
+Message _$MessageFromJson(Map<String, dynamic> json) {
+  return Message(
     text: json['text'] == null
         ? null
-        : TextInput.fromJson(json['text'] as Map<String, dynamic>),
-    eventInput: json['eventInput'] == null
-        ? null
-        : EventInput.fromJson(json['eventInput'] as Map<String, dynamic>),
+        : DialogText.fromJson(json['text'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$QueryInputToJson(QueryInput instance) {
+Map<String, dynamic> _$MessageToJson(Message instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -27,6 +24,5 @@ Map<String, dynamic> _$QueryInputToJson(QueryInput instance) {
   }
 
   writeNotNull('text', instance.text?.toJson());
-  writeNotNull('eventInput', instance.eventInput?.toJson());
   return val;
 }

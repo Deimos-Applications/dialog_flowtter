@@ -1,19 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'entity.dart';
+part of 'text.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Entity _$EntityFromJson(Map<String, dynamic> json) {
-  return Entity(
-    value: json['value'] as String,
-    synonyms: (json['synonyms'] as List)?.map((e) => e as String)?.toList(),
+DialogText _$DialogTextFromJson(Map<String, dynamic> json) {
+  return DialogText(
+    text: (json['text'] as List)?.map((e) => e as String)?.toList(),
   );
 }
 
-Map<String, dynamic> _$EntityToJson(Entity instance) {
+Map<String, dynamic> _$DialogTextToJson(DialogText instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -22,7 +21,6 @@ Map<String, dynamic> _$EntityToJson(Entity instance) {
     }
   }
 
-  writeNotNull('value', instance.value);
-  writeNotNull('synonyms', instance.synonyms);
+  writeNotNull('text', instance.text);
   return val;
 }

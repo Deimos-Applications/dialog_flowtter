@@ -1,8 +1,13 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import "intent.dart";
 import 'message.dart';
 import "output_contexts.dart";
+
+part 'query_result.g.dart';
+
+@JsonSerializable()
 
 /// {@template query_result_template}
 /// Represents the result of conversational query or event processing.
@@ -69,12 +74,6 @@ class QueryResult extends Equatable {
   /// matched intent doesn't contain any required parameters.
   final bool allRequiredParamsPresent;
 
-  /// The text to be pronounced to the user or shown on the screen.
-  ///
-  /// Note: This is a legacy field, [fulfillmentMessages] should be preferred.
-  @Deprecated('Use [fulfillmentMessages]')
-  final String fulfillmentText;
-
   /// The collection of rich messages to present to the user.
   final List<Message> fulfillmentMessages;
 
@@ -103,7 +102,7 @@ class QueryResult extends Equatable {
   ///
   /// If there are multiple [knowledgeAnswers] messages, this value is set
   /// to the greatest [knowledgeAnswers.match_confidence] value in the list.
-  final int intentDetectionConfidence;
+  final double intentDetectionConfidence;
 
   /// {@macro query_result_template}
   QueryResult({
@@ -113,56 +112,18 @@ class QueryResult extends Equatable {
     this.action,
     this.parameters,
     this.allRequiredParamsPresent,
-    this.fulfillmentText,
     this.fulfillmentMessages,
     this.outputContexts,
     this.intent,
     this.intentDetectionConfidence,
   });
 
-  /// {@template from_json_template}
-  /// Returns a new instance from a given json.
-  /// {@endtemplate}
-  factory QueryResult.fromJson(Map<String, dynamic> json) {
-    return QueryResult(
-      queryText: json['queryText'],
-      languageCode: json['languageCode'],
-      speechRecognitionConfidence: json['speechRecognitionConfidence'],
-      action: json['action'],
-      parameters: json['parameters'],
-      allRequiredParamsPresent: json['allRequiredParamsPresent'],
-      fulfillmentText: json['fulfillmentText'],
-      fulfillmentMessages: json['fulfillmentMessages'] != null
-          ? json['fulfillmentMessages'].map((v) => Message.fromJson(v)).toList()
-          : null,
-      outputContexts: json['outputContexts'] != null
-          ? json['outputContexts'].map((v) => Context.fromJson(v)).toList()
-          : null,
-      intent: json['intent'] != null ? Intent.fromJson(json['intent']) : null,
-      intentDetectionConfidence: json['intentDetectionConfidence'],
-    );
-  }
+  ///
+  factory QueryResult.fromJson(Map<String, dynamic> json) =>
+      _$QueryResultFromJson(json);
 
-  /// {@template to_json_template}
-  /// Returns a JSON representacion from the current instance
-  /// {@endtemplate}
-  Map<String, dynamic> toJson() {
-    return {
-      'queryText': queryText,
-      'languageCode': languageCode,
-      'speechRecognitionConfidence': speechRecognitionConfidence,
-      'action': action,
-      'parameters': parameters,
-      'allRequiredParamsPresent': allRequiredParamsPresent,
-      // ignore: deprecated_member_use_from_same_package
-      'fulfillmentText': fulfillmentText,
-      'fulfillmentMessages':
-          fulfillmentMessages.map((v) => v.toJson()).toList(),
-      'outputContexts': outputContexts.map((v) => v.toJson()).toList(),
-      'intent': intent.toJson(),
-      'intentDetectionConfidence': intentDetectionConfidence,
-    };
-  }
+  ///
+  Map<String, dynamic> toJson() => _$QueryResultToJson(this);
 
   @override
   List<Object> get props => [
@@ -172,8 +133,6 @@ class QueryResult extends Equatable {
         action,
         parameters,
         allRequiredParamsPresent,
-        // ignore: deprecated_member_use_from_same_package
-        fulfillmentText,
         fulfillmentMessages,
         outputContexts,
         intent,
