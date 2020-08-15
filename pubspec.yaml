@@ -1,8 +1,8 @@
 name: dialog_flowtter
-description: A new Flutter package project.
-version: 0.0.1
+description: A Flutter implementation of DialogFlow, improved
+version: 0.1.0
 author: ElZombieIsra
-homepage: https://www.deimos.app
+homepage: https://github.com/Deimos-Applications/dialog_flowtter
 
 environment:
     sdk: ">=2.7.0 <3.0.0"
