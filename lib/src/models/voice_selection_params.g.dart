@@ -1,22 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'output_audio_config.dart';
+part of 'voice_selection_params.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-OutputAudioConfig _$OutputAudioConfigFromJson(Map<String, dynamic> json) {
-  return OutputAudioConfig(
-    outputAudioEncodig: _$enumDecodeNullable(
-        _$OutputAudioEncodigEnumMap, json['outputAudioEncodig']),
-    sampleRateHertz: json['sampleRateHertz'] as int,
-    synthesizeSpeechConfig:
-        json['synthesizeSpeechConfig'] as Map<String, dynamic>,
+VoiceSelectionParams _$VoiceSelectionParamsFromJson(Map<String, dynamic> json) {
+  return VoiceSelectionParams(
+    name: json['name'] as String,
+    ssmlGender:
+        _$enumDecodeNullable(_$SsmlVoiceGenderEnumMap, json['ssmlGender']),
   );
 }
 
-Map<String, dynamic> _$OutputAudioConfigToJson(OutputAudioConfig instance) {
+Map<String, dynamic> _$VoiceSelectionParamsToJson(
+    VoiceSelectionParams instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -25,10 +24,8 @@ Map<String, dynamic> _$OutputAudioConfigToJson(OutputAudioConfig instance) {
     }
   }
 
-  writeNotNull('outputAudioEncodig',
-      _$OutputAudioEncodigEnumMap[instance.outputAudioEncodig]);
-  writeNotNull('sampleRateHertz', instance.sampleRateHertz);
-  writeNotNull('synthesizeSpeechConfig', instance.synthesizeSpeechConfig);
+  writeNotNull('name', instance.name);
+  writeNotNull('ssmlGender', _$SsmlVoiceGenderEnumMap[instance.ssmlGender]);
   return val;
 }
 
@@ -64,12 +61,10 @@ T _$enumDecodeNullable<T>(
   return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
 }
 
-const _$OutputAudioEncodigEnumMap = {
-  OutputAudioEncodig.OUTPUT_AUDIO_ENCODING_UNSPECIFIED:
-      'OUTPUT_AUDIO_ENCODING_UNSPECIFIED',
-  OutputAudioEncodig.OUTPUT_AUDIO_ENCODING_LINEAR_16:
-      'OUTPUT_AUDIO_ENCODING_LINEAR_16',
-  OutputAudioEncodig.OUTPUT_AUDIO_ENCODING_MP3: 'OUTPUT_AUDIO_ENCODING_MP3',
-  OutputAudioEncodig.OUTPUT_AUDIO_ENCODING_OGG_OPUS:
-      'OUTPUT_AUDIO_ENCODING_OGG_OPUS',
+const _$SsmlVoiceGenderEnumMap = {
+  SsmlVoiceGender.SSML_VOICE_GENDER_UNSPECIFIED:
+      'SSML_VOICE_GENDER_UNSPECIFIED',
+  SsmlVoiceGender.SSML_VOICE_GENDER_MALE: 'SSML_VOICE_GENDER_MALE',
+  SsmlVoiceGender.SSML_VOICE_GENDER_FEMALE: 'SSML_VOICE_GENDER_FEMALE',
+  SsmlVoiceGender.SSML_VOICE_GENDER_NEUTRAL: 'SSML_VOICE_GENDER_NEUTRAL',
 };

@@ -1,5 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart' show required;
+
+import '../enums/output_audio_encodig.dart';
 
 part 'output_audio_config.g.dart';
 
@@ -13,10 +16,10 @@ part 'output_audio_config.g.dart';
 /// See: https://cloud.google.com/dialogflow/docs/reference/rest/v2/OutputAudioConfig
 /// {@endtemplate}
 class OutputAudioConfig extends Equatable {
-  /// Required. Audio encoding of the synthesized audio content.
+  /// Audio encoding of the synthesized audio content.
   ///
   /// For specific values see: https://cloud.google.com/dialogflow/docs/reference/rest/v2/OutputAudioConfig#OutputAudioEncoding
-  final String outputAudioEncodig;
+  final OutputAudioEncodig outputAudioEncodig;
 
   /// The synthesis sample rate (in hertz) for this audio. If not provided,
   /// then the synthesizer will use the default sample rate based on the
@@ -25,7 +28,6 @@ class OutputAudioConfig extends Equatable {
   /// the desired sample rate (which might result in worse audio quality).
   final int sampleRateHertz;
 
-  // TODO: Create model
   /// Configuration of how speech should be synthesized.
   ///
   /// See: https://cloud.google.com/dialogflow/docs/reference/rest/v2/OutputAudioConfig#SynthesizeSpeechConfig
@@ -33,7 +35,7 @@ class OutputAudioConfig extends Equatable {
 
   /// {@macro output_audio_config_template}
   OutputAudioConfig({
-    this.outputAudioEncodig,
+    @required this.outputAudioEncodig,
     this.sampleRateHertz,
     this.synthesizeSpeechConfig,
   });
