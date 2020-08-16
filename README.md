@@ -46,6 +46,10 @@
     flutter packages get
     ```
 
+# Get your keys
+
+Refer to [Create a service account and download the private key file](https://cloud.google.com/dialogflow/docs/quick/setup#sa-create)
+
 # How to use
 
 ## Detect intent
