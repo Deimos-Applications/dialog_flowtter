@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../context.dart';
 import 'lat_lng.dart';
-import 'output_contexts.dart';
 import 'sentiment_analysis_request_config.dart';
 import 'session_entity_type.dart';
 

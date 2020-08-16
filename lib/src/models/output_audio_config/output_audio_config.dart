@@ -2,7 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart' show required;
 
-import '../enums/output_audio_encodig.dart';
+import '../../enums/output_audio_encodig.dart';
+import 'synthesize_speech_config.dart';
 
 part 'output_audio_config.g.dart';
 
@@ -31,7 +32,7 @@ class OutputAudioConfig extends Equatable {
   /// Configuration of how speech should be synthesized.
   ///
   /// See: https://cloud.google.com/dialogflow/docs/reference/rest/v2/OutputAudioConfig#SynthesizeSpeechConfig
-  final Map<String, dynamic> synthesizeSpeechConfig;
+  final SynthesizeSpeechConfig synthesizeSpeechConfig;
 
   /// {@macro output_audio_config_template}
   OutputAudioConfig({

@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import "intent.dart";
-import 'message.dart';
-import "output_contexts.dart";
+import '../context.dart';
+import '../intent/intent.dart';
+import '../intent/message.dart';
 
 part 'query_result.g.dart';
 
@@ -103,6 +103,7 @@ class QueryResult extends Equatable {
   /// If there are multiple [knowledgeAnswers] messages, this value is set
   /// to the greatest [knowledgeAnswers.match_confidence] value in the list.
   final double intentDetectionConfidence;
+  // TODO: Add diagnostic info and sentiment analysis result
 
   /// {@macro query_result_template}
   QueryResult({

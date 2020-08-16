@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'output_contexts.g.dart';
+part 'context.g.dart';
 
 @JsonSerializable()
 

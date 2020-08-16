@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../enums/ssml_voice_gender.dart';
+import '../../enums/ssml_voice_gender.dart';
 
 part 'voice_selection_params.g.dart';
 

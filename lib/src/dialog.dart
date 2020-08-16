@@ -5,10 +5,10 @@ import 'package:googleapis_auth/auth.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:meta/meta.dart' show required;
 
-import 'models/detect_intent_response.dart';
-import 'models/output_audio_config.dart';
-import 'models/query_input.dart';
-import 'models/query_parameters.dart';
+import 'models/detect_intent_response/detect_intent_response.dart';
+import 'models/output_audio_config/output_audio_config.dart';
+import 'models/query_input/query_input.dart';
+import 'models/query_parameters/query_parameters.dart';
 
 /// {@template dialog_flowtter_template}
 /// ## Detect intent

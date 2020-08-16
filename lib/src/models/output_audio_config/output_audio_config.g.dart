@@ -11,8 +11,10 @@ OutputAudioConfig _$OutputAudioConfigFromJson(Map<String, dynamic> json) {
     outputAudioEncodig: _$enumDecodeNullable(
         _$OutputAudioEncodigEnumMap, json['outputAudioEncodig']),
     sampleRateHertz: json['sampleRateHertz'] as int,
-    synthesizeSpeechConfig:
-        json['synthesizeSpeechConfig'] as Map<String, dynamic>,
+    synthesizeSpeechConfig: json['synthesizeSpeechConfig'] == null
+        ? null
+        : SynthesizeSpeechConfig.fromJson(
+            json['synthesizeSpeechConfig'] as Map<String, dynamic>),
   );
 }
 
@@ -28,7 +30,8 @@ Map<String, dynamic> _$OutputAudioConfigToJson(OutputAudioConfig instance) {
   writeNotNull('outputAudioEncodig',
       _$OutputAudioEncodigEnumMap[instance.outputAudioEncodig]);
   writeNotNull('sampleRateHertz', instance.sampleRateHertz);
-  writeNotNull('synthesizeSpeechConfig', instance.synthesizeSpeechConfig);
+  writeNotNull(
+      'synthesizeSpeechConfig', instance.synthesizeSpeechConfig?.toJson());
   return val;
 }
 
