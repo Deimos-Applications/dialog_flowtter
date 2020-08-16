@@ -2,12 +2,13 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'follow_up_intent_info.dart';
+import 'intent_parameter.dart';
+import 'message.dart';
 
 part 'intent.g.dart';
 
 @JsonSerializable()
 
-// TODO: Complete model
 /// {@template intent_template}
 /// An intent categorizes an end-user's intention for one conversation turn.
 ///
@@ -34,12 +35,40 @@ class Intent extends Equatable {
   /// Indicates whether this is a fallback intent.
   final bool isFallback;
 
+  /// Indicates whether Machine Learning is disabled for the intent.
+  ///
+  /// Note: If mlDisabled setting is set to true, then this intent is not
+  /// taken into account during inference in ML ONLY match mode. Also,
+  /// auto-markup in the UI is turned off.
+  final bool mlDisabled;
+
+  /// The list of context names required for this intent to be triggered.
+  ///
+  /// Format: projects/<Project ID>/agent/sessions/-/contexts/<Context ID>.
+  final List<String> inputContextNames;
+
+  /// The collection of event names that trigger the intent.
+  ///
+  /// If the collection of input contexts is not empty, all of the contexts
+  /// must be present in the active user session for an event to trigger
+  /// this intent.
+  ///
+  /// Event names are limited to 150 characters.
+  final List<String> events;
+
   /// The name of the action associated with the intent.
   final String action;
 
   /// Indicates whether to delete all contexts in the current session when
   /// this intent is matched.
   final bool resetContexts;
+
+  /// The collection of parameters associated with the intent.
+  final List<IntentParameter> parameters;
+
+  /// The collection of rich messages corresponding to the [Response] field in
+  /// the Dialogflow console.
+  final List<Message> messages;
 
   /// The unique identifier of the root intent in the chain of followup intents.
   ///
@@ -60,8 +89,13 @@ class Intent extends Equatable {
     this.displayName,
     this.priority,
     this.isFallback,
+    this.mlDisabled,
+    this.inputContextNames,
+    this.events,
     this.action,
     this.resetContexts,
+    this.parameters,
+    this.messages,
     this.rootFollowupIntentName,
     this.parentFollowUpIntentName,
     this.followUpIntentInfo,
@@ -79,8 +113,13 @@ class Intent extends Equatable {
         displayName,
         priority,
         isFallback,
+        mlDisabled,
+        inputContextNames,
+        events,
         action,
         resetContexts,
+        parameters,
+        messages,
         rootFollowupIntentName,
         parentFollowUpIntentName,
         followUpIntentInfo,
