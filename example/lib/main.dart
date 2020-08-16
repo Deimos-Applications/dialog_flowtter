@@ -65,6 +65,8 @@ class _MyHomePageState extends State<MyHomePage> {
     EquatableConfig.stringify = true;
     final DialogFlowtter dialogFlowtter = DialogFlowtter();
 
+    dialogFlowtter.projectId = "deimos-apps-0905";
+
     DetectIntentResponse response = await dialogFlowtter.detectIntent(
       queryInput: QueryInput(
         text: TextInput(

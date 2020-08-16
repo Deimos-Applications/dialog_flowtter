@@ -10,6 +10,71 @@ import 'models/output_audio_config.dart';
 import 'models/query_input.dart';
 import 'models/query_parameters.dart';
 
+/// {@template dialog_flowtter_template}
+/// ## Detect intent
+///
+/// One of the core features of DialogFlow is to detect what a person is trying to say. You can do that by detecting an intent that you have defined in your [DialogFlow console](https://dialogflow.cloud.google.com/)
+///
+/// 1. Create an instance of `DialogFlowtter` and set the `sessionId` that will
+/// be used to identify the current conversation of the user with DialogFlow.
+///
+/// > It's _**highly*_ recommended that you use a different `sessionId` for
+/// every conversation that the user establishes with the Assistant
+///
+/// ```dart
+///   final DialogFlowtter dialogFlowtter = DialogFlowtter(
+///     sessionId: "YOUR_SESSION_ID_HERE",
+///   );
+/// ```
+///
+/// (OPTIONAL) Change the JSON path to the one you're using. This defaults
+/// to `assets/dialog_flow_auth.json`.
+///
+///   ```dart
+///     DialogFlowtter(
+///       jsonPath: "YOUR_JSON_PATH_HERE",
+///     );
+///   ```
+///
+/// 2. Create a `QueryInput` where you can specify what data you want to send
+/// to DialogFlow.
+///
+///   ```dart
+///     final QueryInput queryInput = QueryInput(
+///       text: TextInput(
+///         text: "Hi. How are you?",
+///         languageCode: "en",
+///       ),
+///     );
+///   ```
+///
+/// 3. Send your input to DialogFlow through the `detectIntent` function.
+///
+///   ```dart
+///     DetectIntentResponse response = await dialogFlowtter.detectIntent(
+///       queryInput: queryInput,
+///     );
+///   ```
+///
+/// > You can check the code for more info on what info you can send and receive
+///
+/// ## Change the project id
+///
+/// You can change the Project ID that `DialogFlowtter` will use to find your
+/// intents in DialogFlow.
+///
+/// 1. Create an instance of `DialogFlowtter`
+///
+///   ```dart
+///     final DialogFlowtter dialogFlowtter = DialogFlowtter();
+///   ```
+///
+/// 2. Change the `projectId` prop of the instance;
+///
+///   ```dart
+///     dialogFlowtter.projectId = "deimos-apps-0905";
+///   ```
+/// {@endtemplate}
 class DialogFlowtter {
   /// The default session ID used to identify the interaction with DialogFlow.
   ///
@@ -54,9 +119,10 @@ class DialogFlowtter {
   ///
   /// If not specified, it would be obtained from the JSON given
   ///
-  /// You can override this at any time given and the plugin with use it
+  /// You can override this at any time given and the plugin will use it
   String projectId;
 
+  /// {@macro dialog_flowtter_template}
   DialogFlowtter({
     this.sessionId = _kDefaultSessionId,
     this.jsonPath = kDefaultJsonPath,
