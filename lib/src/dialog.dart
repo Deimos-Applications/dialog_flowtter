@@ -18,7 +18,7 @@ import 'models/query_parameters.dart';
 /// 1. Create an instance of `DialogFlowtter` and set the `sessionId` that will
 /// be used to identify the current conversation of the user with DialogFlow.
 ///
-/// > It's _**highly*_ recommended that you use a different `sessionId` for
+/// > It's _**highly**_ recommended that you use a different `sessionId` for
 /// every conversation that the user establishes with the Assistant
 ///
 /// ```dart
