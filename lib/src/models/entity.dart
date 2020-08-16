@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'entity.g.dart';
@@ -7,7 +8,7 @@ part 'entity.g.dart';
 /// {@template entry_template}
 /// An entity entry for an associated entity type.
 /// {@endtemplate}
-class Entity {
+class Entity extends Equatable {
   /// The primary value associated with this entity entry.
   ///
   /// For example, if the entity type is vegetable, the value could be
@@ -44,4 +45,10 @@ class Entity {
 
   ///
   Map<String, dynamic> toJson() => _$EntityToJson(this);
+
+  @override
+  List<Object> get props => [
+        value,
+        synonyms,
+      ];
 }

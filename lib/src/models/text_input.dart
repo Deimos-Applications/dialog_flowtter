@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart' show required;
 
@@ -8,7 +9,7 @@ part 'text_input.g.dart';
 /// {@template text_input_template}
 /// Represents the natural language text to be processed.
 /// {@endtemplate}
-class TextInput {
+class TextInput extends Equatable {
   /// The UTF-8 encoded natural language text to be processed. Text length
   /// must not exceed 256 characters.
   final String text;
@@ -35,4 +36,10 @@ class TextInput {
 
   ///
   Map<String, dynamic> toJson() => _$TextInputToJson(this);
+
+  @override
+  List<Object> get props => [
+        text,
+        languageCode,
+      ];
 }

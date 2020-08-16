@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import '../enums/entity_override_mode.dart';
 import 'entity.dart';
@@ -17,7 +18,7 @@ part 'session_entity_type.g.dart';
 /// All session data, including session entities, is stored by Dialogflow
 /// for 20 minutes.
 /// {@endtemplate}
-class SessionEntityType {
+class SessionEntityType extends Equatable {
   /// The unique identifier of this session entity type.
   final String name;
 
@@ -41,4 +42,11 @@ class SessionEntityType {
 
   ///
   Map<String, dynamic> toJson() => _$SessionEntityTypeToJson(this);
+
+  @override
+  List<Object> get props => [
+        name,
+        entityOverrideMode,
+        entities,
+      ];
 }
