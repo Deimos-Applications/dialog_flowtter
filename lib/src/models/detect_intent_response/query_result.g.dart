@@ -28,6 +28,11 @@ QueryResult _$QueryResultFromJson(Map<String, dynamic> json) {
         : Intent.fromJson(json['intent'] as Map<String, dynamic>),
     intentDetectionConfidence:
         (json['intentDetectionConfidence'] as num)?.toDouble(),
+    diagnosticInfo: json['diagnosticInfo'] as Map<String, dynamic>,
+    sentimentAnalysisResult: json['sentimentAnalysisResult'] == null
+        ? null
+        : SentimentAnalysisResult.fromJson(
+            json['sentimentAnalysisResult'] as Map<String, dynamic>),
   );
 }
 
@@ -53,5 +58,8 @@ Map<String, dynamic> _$QueryResultToJson(QueryResult instance) {
       instance.outputContexts?.map((e) => e?.toJson())?.toList());
   writeNotNull('intent', instance.intent?.toJson());
   writeNotNull('intentDetectionConfidence', instance.intentDetectionConfidence);
+  writeNotNull('diagnosticInfo', instance.diagnosticInfo);
+  writeNotNull(
+      'sentimentAnalysisResult', instance.sentimentAnalysisResult?.toJson());
   return val;
 }

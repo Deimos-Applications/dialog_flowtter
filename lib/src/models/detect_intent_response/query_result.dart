@@ -4,6 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 import '../context.dart';
 import '../intent/intent.dart';
 import '../intent/message.dart';
+import 'sentiment_analysis_result.dart';
 
 part 'query_result.g.dart';
 
@@ -103,7 +104,21 @@ class QueryResult extends Equatable {
   /// If there are multiple [knowledgeAnswers] messages, this value is set
   /// to the greatest [knowledgeAnswers.match_confidence] value in the list.
   final double intentDetectionConfidence;
-  // TODO: Add diagnostic info and sentiment analysis result
+
+  /// Free-form diagnostic information for the associated detect intent request.
+  ///
+  /// The fields of this data can change without notice, so you should not
+  /// write code that depends on its structure.
+  ///
+  /// The data may contain:
+  ///
+  /// - webhook call latency
+  /// - webhook errors
+  final Map<String, dynamic> diagnosticInfo;
+
+  /// The sentiment analysis result, which depends on the
+  /// [sentimentAnalysisRequestConfig] specified in the request.
+  final SentimentAnalysisResult sentimentAnalysisResult;
 
   /// {@macro query_result_template}
   QueryResult({
@@ -117,6 +132,8 @@ class QueryResult extends Equatable {
     this.outputContexts,
     this.intent,
     this.intentDetectionConfidence,
+    this.diagnosticInfo,
+    this.sentimentAnalysisResult,
   });
 
   ///
@@ -138,5 +155,7 @@ class QueryResult extends Equatable {
         outputContexts,
         intent,
         intentDetectionConfidence,
+        diagnosticInfo,
+        sentimentAnalysisResult,
       ];
 }
