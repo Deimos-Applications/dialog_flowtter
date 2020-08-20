@@ -121,6 +121,12 @@ You can change the Project ID that `DialogFlowtter` will use to find your intent
 
 The `DialogFlowtter` class creates an authenticated http client with the credentials, obtained from the DialogFlow Auth JSON, whenever you instanciate the class and saves it for later use. It is _**important**_ that you save this instance and don't create a new one to avoid prompting the authentication process multiple times.
 
+## Too many models
+
+We have coded almost every model that you may need to use when implementing this package so you don't have to work with annoying `Map<String, dynamic>` objects. Feel free to ask for any model that is missing to be added to the package. 
+
+> The models that were not coded are included as annoying `Map<String, dynamic>` and are tagged with the `//? Create model if necessary`.
+
 # TO-DO
 
 - [ ] Add support for cards, images, etc.

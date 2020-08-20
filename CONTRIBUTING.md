@@ -1,8 +1,8 @@
-# Contributing to Equatable
+# Contributing to DialogFlowtter
 
 👍🎉 First off, thanks for taking the time to contribute! 🎉👍
 
-The following is a set of guidelines for contributing to Equatable and its packages. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
+The following is a set of guidelines for contributing to DialogFlowtter and its packages. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 ## Proposing a Change
 
@@ -28,13 +28,9 @@ Before creating a pull request please:
 
 While the prerequisites above must be satisfied prior to having your pull request reviewed, the reviewer(s) may ask you to complete additional design work, tests, or other changes before your pull request can be ultimately accepted.
 
-## Getting in Touch
-
-If you want to just ask a question or get feedback on an idea you can post it on [gitter](https://gitter.im/equatable_package/community).
-
 ## License
 
-By contributing to Equatable, you agree that your contributions will be licensed under its MIT license.
+By contributing to DialogFlowtter, you agree that your contributions will be licensed under its MIT license.
 
 ## Credits
 
