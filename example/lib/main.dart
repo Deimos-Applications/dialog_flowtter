@@ -1,5 +1,4 @@
 import 'package:dialog_flowtter/dialog_flowtter.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -62,7 +61,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void a() async {
-    EquatableConfig.stringify = true;
     final DialogFlowtter dialogFlowtter = DialogFlowtter();
 
     dialogFlowtter.projectId = "deimos-apps-0905";

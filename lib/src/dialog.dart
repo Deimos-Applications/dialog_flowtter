@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
 import 'package:googleapis_auth/auth.dart';
 import 'package:googleapis_auth/auth_io.dart';
@@ -9,6 +10,7 @@ import 'models/detect_intent_response/detect_intent_response.dart';
 import 'models/output_audio_config/output_audio_config.dart';
 import 'models/query_input/query_input.dart';
 import 'models/query_parameters/query_parameters.dart';
+import 'utils/http_util.dart';
 
 /// {@template dialog_flowtter_template}
 /// ## Detect intent
@@ -122,11 +124,19 @@ class DialogFlowtter {
   /// You can override this at any time given and the plugin will use it
   String projectId;
 
+  /// The private instance of DialogFlowtter for later use
+  static final DialogFlowtter _dialogFlowtter = DialogFlowtter._internal();
+
   /// {@macro dialog_flowtter_template}
-  DialogFlowtter({
+  factory DialogFlowtter() => _dialogFlowtter;
+
+  /// {@macro dialog_flowtter_template}
+  DialogFlowtter._internal({
     this.sessionId = _kDefaultSessionId,
     this.jsonPath = kDefaultJsonPath,
-  });
+  }) {
+    EquatableConfig.stringify = true;
+  }
 
   /// Processes a natural language query and returns structured,
   /// actionable data as a result.
@@ -151,41 +161,26 @@ class DialogFlowtter {
       _client = await getClient(json);
     }
 
-    var body = _getBody(
+    var body = HttpUtil.getBody(
       queryParams: queryParams,
       queryInput: queryInput,
       audioConfig: audioConfig,
     );
 
     var response = await _client.post(
-      '$kDialogFlowUrl/$kDialogFlowApiVersion/${_getFormatedSession(projectId, sessionId)}:detectIntent',
+      '$kDialogFlowUrl/$kDialogFlowApiVersion/${HttpUtil.getFormatedSession(projectId, sessionId)}:detectIntent',
       body: jsonEncode(body),
     );
 
+    if (!HttpUtil.isValidStatusCode(response.statusCode)) {
+      var _json = jsonDecode(response.body)["error"];
+      throw Exception(
+        "${_json['status']}: ${_json['message']}, (${_json['code']})",
+      );
+    }
+
     Map<String, dynamic> json = await jsonDecode(response.body);
     return DetectIntentResponse.fromJson(json);
-  }
-
-  Map<String, dynamic> _getBody({
-    QueryParameters queryParams,
-    QueryInput queryInput,
-    OutputAudioConfig audioConfig,
-  }) {
-    Map<String, dynamic> body = {};
-    if (queryParams != null) {
-      body['queryParams'] = queryParams.toJson();
-    }
-    if (queryInput != null) {
-      body['queryInput'] = queryInput.toJson();
-    }
-    if (audioConfig != null) {
-      body['audioConfig'] = audioConfig.toJson();
-    }
-    return body;
-  }
-
-  String _getFormatedSession(String projectId, String sessionId) {
-    return 'projects/$projectId/agent/sessions/$sessionId';
   }
 
   /// Returns the JSON Auth info from the specified path
@@ -210,5 +205,12 @@ class DialogFlowtter {
       [_kDialogFlowScope],
     );
     return client;
+  }
+
+  /// Disposes the instance of DialogFlowtter and clears the authenticated
+  /// client.
+  void dispose() {
+    _client?.close();
+    _client = null;
   }
 }
