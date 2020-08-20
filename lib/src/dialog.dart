@@ -196,7 +196,9 @@ class DialogFlowtter {
 
   /// Returns an authenticated HTTP client with the given credentials in the
   /// [json] obtained from [jsonPath]
-  Future<AutoRefreshingAuthClient> getClient(Map<String, dynamic> json) async {
+  static Future<AutoRefreshingAuthClient> getClient(
+    Map<String, dynamic> json,
+  ) async {
     ServiceAccountCredentials credentials =
         ServiceAccountCredentials.fromJson(json);
 
@@ -213,4 +215,7 @@ class DialogFlowtter {
     _client?.close();
     _client = null;
   }
+
+  /// The authenticated client used by the package to make http requests
+  AutoRefreshingAuthClient get client => _client;
 }
