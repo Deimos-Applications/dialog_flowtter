@@ -1,9 +1,10 @@
-import 'dart:convert';
+import 'dart:convert' show jsonDecode, jsonEncode;
 
-import 'package:equatable/equatable.dart';
-import 'package:flutter/services.dart';
-import 'package:googleapis_auth/auth.dart';
-import 'package:googleapis_auth/auth_io.dart';
+import 'package:equatable/equatable.dart' show EquatableConfig;
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:googleapis_auth/auth.dart'
+    show AutoRefreshingAuthClient, ServiceAccountCredentials;
+import 'package:googleapis_auth/auth_io.dart' show clientViaServiceAccount;
 import 'package:meta/meta.dart' show required;
 
 import 'models/detect_intent_response/detect_intent_response.dart';
@@ -187,7 +188,7 @@ class DialogFlowtter {
   Future<Map<String, dynamic>> getJsonInfo(String _jsonPath) async {
     try {
       String data = await rootBundle.loadString(_jsonPath);
-      return json.decode(data);
+      return jsonDecode(data);
       // ignore: avoid_catches_without_on_clauses
     } catch (e) {
       return null;
