@@ -1,3 +1,8 @@
+# 0.1.2
+
+* Added support for web in the example app
+* Removed unnecesary imports in the library
+
 # 0.1.1
 
 * Added support for web by removing blocking dependencies
