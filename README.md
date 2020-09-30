@@ -21,6 +21,11 @@
   </a>
 </p>
 
+# Platform support
+
+This package is fully supported in **Android**, **iOS** and **Web**.
+We have plans on testing and adding support for _Windows_, _Linux_ and _MacOS_ as this platforms mature in the Flutter SDK.
+
 # Installation
 
 1. Add the package to your flutter dependencies in you `pubspec.yaml`:
@@ -97,6 +102,46 @@ One of the core features of DialogFlow is to detect what a person is trying to s
   ```
 
 > You can check the code for more info on what info you can send and receive
+
+## Get the info from the intent
+
+You can access the info returned by DialogFlow from the `DetectIntentResponse` that the `detectIntent` returns.
+
+### Get the text from the response
+
+```dart
+  DetectIntentResponse response = await dialogFlowtter.detectIntent(
+    queryInput: QueryInput(text: TextInput(text: "Hi")),
+  );
+  
+  String textResponse = response.text;
+
+  print(textResponse); // Hi, how may I help you?
+```
+
+> _response.text_ returns null if there's no text returned by DialogFlow or if the first message returned it's not of type MessageType.text
+
+### Get the message from the response
+
+See [Message](https://github.com/Deimos-Applications/dialog_flowtter/blob/master/lib/src/models/intent/message.dart) for more info on what the model properties can be
+
+```dart
+  DetectIntentResponse response = await dialogFlowtter.detectIntent(
+    queryInput: QueryInput(text: TextInput(text: "Hi")),
+  );
+  
+  Message messageResponse = response.message;
+```
+
+### Get the response type of the message
+
+```dart
+  MessageType messageType = response.message.type;
+
+  print(messageType); /// MessageType.card
+```
+
+> _response.message_ returns null if there's no messages returned by DialogFlow
 
 ### Be sure to dispose the instance when you're done using it
 
