@@ -3,6 +3,8 @@ description: A Flutter implementation of DialogFlow, improved
 version: 0.1.0
 author: ElZombieIsra
 homepage: https://github.com/Deimos-Applications/dialog_flowtter
+repository: https://github.com/Deimos-Applications/dialog_flowtter
+issue_tracker: https://github.com/Deimos-Applications/dialog_flowtter/issues
 
 environment:
     sdk: ">=2.7.0 <3.0.0"
@@ -21,6 +23,3 @@ dev_dependencies:
     effective_dart: ^1.0.0
     build_runner: ^1.10.1
     json_serializable: ^3.2.5
-flutter:
-    assets:
-        - assets/dialog_flow_auth.json

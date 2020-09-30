@@ -1,3 +1,7 @@
-## [0.0.1] - TODO: Add release date.
+# 0.0.1
 
-* TODO: Describe initial release.
+Initial release
+
+-   Read data from json
+-   Get authenticated http client
+-   DialogFlow responses mapped into models
