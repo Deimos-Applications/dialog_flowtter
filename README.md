@@ -1,4 +1,4 @@
-<img src="./.github/dialog_flowtter_icon.png" width="100%" alt="logo" />
+<img src="https://raw.githubusercontent.com/Deimos-Applications/dialog_flowtter/master/.github/dialog_flowtter_icon.png" width="100%" alt="logo" />
 <h2 align="center">
   A Flutter implementation of DialogFlow, improved
 </h2>
@@ -41,7 +41,7 @@
 
 3. Add your DialogFlow Auth JSON to the `assets` folder and rename it to `dialog_flow_auth.json`
   
-- _You can change the name and Path of your JSON later in the code. Just make sure to use the same one in the `pubspec.yaml`_
+> You can change the name and Path of your JSON later in the code. Just make sure to use the same one in the `pubspec.yaml`
   
 4. Get the packages from:
 
@@ -152,7 +152,7 @@ Make sure to `dispose` your `DialogFlowtter` instance whenever you're done using
 
 ## Too many models
 
-We have coded almost every model that you may need to use when implementing this package so you don't have to work with annoying `Map<String, dynamic>` objects. Feel free to ask for any model that is missing to be added to the package. 
+We have coded almost every model that you may need to use when implementing this package so you don't have to work with annoying `Map<String, dynamic>` objects. Feel free to ask for any model that is missing to be added to the package.
 
 > The models that were not coded are included as annoying `Map<String, dynamic>` and are tagged with the `//? Create model if necessary`.
 
