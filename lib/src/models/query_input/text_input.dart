@@ -26,7 +26,7 @@ class TextInput extends Equatable {
   /// {@macro text_input_template}
   TextInput({
     @required this.text,
-    @required this.languageCode,
+    this.languageCode = 'en',
   })  : assert(text != null),
         assert(languageCode != null);
 

@@ -1,6 +1,8 @@
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
 
+import 'app_body.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -10,12 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Dialog Flowtter Example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Dialog Flowtter'),
     );
   }
 }
@@ -30,7 +32,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final DialogFlowtter dialogFlowtter = DialogFlowtter();
+  final TextEditingController _controller = TextEditingController();
+
+  List<Map<String, dynamic>> messages = [];
 
   @override
   Widget build(BuildContext context) {
@@ -38,42 +43,64 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      body: Column(
+        children: [
+          Expanded(child: AppBody(messages: messages)),
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10,
+              vertical: 5,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            color: Colors.blue,
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _controller,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+                IconButton(
+                  color: Colors.white,
+                  icon: Icon(Icons.send),
+                  onPressed: () {
+                    sendMessage(_controller.text);
+                    _controller.clear();
+                  },
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: a,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+          ),
+        ],
       ),
     );
   }
 
-  void a() async {
-    final DialogFlowtter dialogFlowtter = DialogFlowtter();
+  void sendMessage(String text) async {
+    if (text.isEmpty) return;
+    setState(() {
+      addMessage(
+        Message(text: DialogText(text: [text])),
+        true,
+      );
+    });
 
-    dialogFlowtter.projectId = "deimos-apps-0905";
+    // dialogFlowtter.projectId = "deimos-apps-0905";
 
     DetectIntentResponse response = await dialogFlowtter.detectIntent(
-      queryInput: QueryInput(
-        text: TextInput(
-          text: "Hola, cómo estás",
-          languageCode: "es",
-        ),
-      ),
+      queryInput: QueryInput(text: TextInput(text: text)),
     );
 
-    print(response);
+    if (response.message == null) return;
+    setState(() {
+      addMessage(response.message);
+    });
+  }
+
+  void addMessage(Message message, [bool isUserMessage]) {
+    messages.add({
+      'message': message,
+      'isUserMessage': isUserMessage ?? false,
+    });
   }
 }

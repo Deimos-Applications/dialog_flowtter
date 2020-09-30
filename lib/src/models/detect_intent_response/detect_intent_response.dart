@@ -1,5 +1,9 @@
+// ignore_for_file: avoid_catches_without_on_clauses
+
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../intent/message.dart';
 import '../output_audio_config/output_audio_config.dart';
 import 'query_result.dart';
 
@@ -51,6 +55,24 @@ class DetectIntentResponse extends Equatable {
     this.outputAudio,
     this.outputAudioConfig,
   });
+
+  /// Short hand term for the first fullfilment message returned by the agent
+  Message get message {
+    if (queryResult == null || queryResult.fulfillmentMessages.length == 0) {
+      print("Theres no messages in this response");
+      return null;
+    }
+    return queryResult.fulfillmentMessages[0];
+  }
+
+  /// Short hand term for the first text message returned by the agent
+  String get text {
+    if (message?.text == null || message.text.text.length == 0) {
+      print("Theres no texts in this response");
+      return null;
+    }
+    return message.text.text[0];
+  }
 
   ///
   factory DetectIntentResponse.fromJson(Map<String, dynamic> json) =>

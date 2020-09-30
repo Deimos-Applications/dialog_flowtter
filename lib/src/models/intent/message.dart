@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../enums/message_type.dart';
 import 'message/basic_card.dart';
 import 'message/card.dart';
 import 'message/carousel_select.dart';
@@ -81,6 +83,25 @@ class Message extends Equatable {
     this.tableCard,
     this.mediaContent,
   });
+
+  /// The type of the message received
+  MessageType get type {
+    if (text != null) return MessageType.text;
+    if (image != null) return MessageType.image;
+    if (quickReplies != null) return MessageType.quickReply;
+    if (card != null) return MessageType.card;
+    if (payload != null) return MessageType.payload;
+    if (simpleResponses != null) return MessageType.simpleResponse;
+    if (basicCard != null) return MessageType.basicCard;
+    if (suggestions != null) return MessageType.suggestion;
+    if (linkOutSuggestion != null) return MessageType.linkOutSuggestion;
+    if (listSelect != null) return MessageType.listSelect;
+    if (carouselSelect != null) return MessageType.carouselSelect;
+    if (browseCarouselCard != null) return MessageType.browseCarouselCard;
+    if (tableCard != null) return MessageType.tableCard;
+    if (mediaContent != null) return MessageType.mediaContent;
+    return null;
+  }
 
   ///
   factory Message.fromJson(Map<String, dynamic> json) =>
