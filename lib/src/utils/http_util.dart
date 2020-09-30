@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import '../../dialog_flowtter.dart';
 
 /// The DialogFlowtter http util
@@ -30,10 +28,7 @@ class HttpUtil {
 
   /// Verifies if the response is valid and successful
   static bool isValidStatusCode(int code) {
-    if (code != HttpStatus.ok &&
-        code != HttpStatus.created &&
-        code != HttpStatus.accepted &&
-        code != HttpStatus.partialContent) {
+    if (code != 200 && code != 201 && code != 202 && code != 206) {
       return false;
     }
     return true;

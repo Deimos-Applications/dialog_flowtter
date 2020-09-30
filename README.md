@@ -27,7 +27,7 @@
 
     ```yaml
     dependencies:
-        dialog_flowtter: ^0.1.0
+        dialog_flowtter: ^0.1.1
     ```
 
 2. Make sure you add your dialog_flow_auth.json to the `pubspec.yaml` assets:
