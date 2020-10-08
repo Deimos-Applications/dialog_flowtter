@@ -1,7 +1,10 @@
 <img src="https://raw.githubusercontent.com/Deimos-Applications/dialog_flowtter/master/.github/dialog_flowtter_icon.png" width="100%" alt="logo" />
 <h2 align="center">
-  A Flutter implementation of DialogFlow, improved
+  A Flutter implementation of DialogFlow, improved.
 </h2>
+  <p align="center">
+    Build your integrations with DialogFlow easier and faster.
+  </p>
 
 <p align="center">
   <a href="https://pub.dartlang.org/packages/dialog_flowtter">
@@ -21,6 +24,26 @@
   </a>
 </p>
 
+# About the package
+
+DialogFlowtter is a package that helps you to build integrations with DialogFlow easier and faster.
+
+- Authenticate with Google Auth Json
+- Get an authenticated http client so you can talk with your DialogFlow agent
+- Get access to all DialogFlow responses and models easily
+- Inspect what values a DialogFlow response could have
+
+## Why DialogFlowtter
+
+The problem with the current DialogFlow integration packages that are available in Pub is that they're:
+
+- Completely abandoned
+- Not well documented
+- Lack functionality
+- Lack flexibility
+
+This one is intended to solve those problems and add more features that I've seen the users want. Check the [TO-DO section](#to-do) for more info on that.
+
 # Platform support
 
 This package is fully supported in **Android**, **iOS** and **Web**.
@@ -32,7 +55,7 @@ We have plans on testing and adding support for _Windows_, _Linux_ and _MacOS_ a
 
     ```yaml
     dependencies:
-        dialog_flowtter: ^0.1.2
+        dialog_flowtter: ^0.1.3
     ```
 
 2. Make sure you add your dialog_flow_auth.json to the `pubspec.yaml` assets:

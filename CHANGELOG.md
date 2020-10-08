@@ -1,3 +1,7 @@
+# 0.1.3
+
+* Updated README.md with package description and advantages
+
 # 0.1.2
 
 * Added support for web in the example app
