@@ -1,3 +1,8 @@
+# 0.1.5
+
+* Added the ability to fetch `outputAudio` 
+* Added `outputAudio` bytes list to `DetectIntentResponse` class
+
 # 0.1.4
 
 * Removed Singleton feature in `DialogFlowtter` class

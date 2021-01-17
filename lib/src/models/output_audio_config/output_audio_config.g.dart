@@ -8,8 +8,8 @@ part of 'output_audio_config.dart';
 
 OutputAudioConfig _$OutputAudioConfigFromJson(Map<String, dynamic> json) {
   return OutputAudioConfig(
-    outputAudioEncodig: _$enumDecodeNullable(
-        _$OutputAudioEncodigEnumMap, json['outputAudioEncodig']),
+    audioEncoding: _$enumDecodeNullable(
+        _$OutputAudioEncodingEnumMap, json['audioEncoding']),
     sampleRateHertz: json['sampleRateHertz'] as int,
     synthesizeSpeechConfig: json['synthesizeSpeechConfig'] == null
         ? null
@@ -27,8 +27,8 @@ Map<String, dynamic> _$OutputAudioConfigToJson(OutputAudioConfig instance) {
     }
   }
 
-  writeNotNull('outputAudioEncodig',
-      _$OutputAudioEncodigEnumMap[instance.outputAudioEncodig]);
+  writeNotNull(
+      'audioEncoding', _$OutputAudioEncodingEnumMap[instance.audioEncoding]);
   writeNotNull('sampleRateHertz', instance.sampleRateHertz);
   writeNotNull(
       'synthesizeSpeechConfig', instance.synthesizeSpeechConfig?.toJson());
@@ -67,12 +67,12 @@ T _$enumDecodeNullable<T>(
   return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
 }
 
-const _$OutputAudioEncodigEnumMap = {
-  OutputAudioEncodig.OUTPUT_AUDIO_ENCODING_UNSPECIFIED:
+const _$OutputAudioEncodingEnumMap = {
+  OutputAudioEncoding.OUTPUT_AUDIO_ENCODING_UNSPECIFIED:
       'OUTPUT_AUDIO_ENCODING_UNSPECIFIED',
-  OutputAudioEncodig.OUTPUT_AUDIO_ENCODING_LINEAR_16:
+  OutputAudioEncoding.OUTPUT_AUDIO_ENCODING_LINEAR_16:
       'OUTPUT_AUDIO_ENCODING_LINEAR_16',
-  OutputAudioEncodig.OUTPUT_AUDIO_ENCODING_MP3: 'OUTPUT_AUDIO_ENCODING_MP3',
-  OutputAudioEncodig.OUTPUT_AUDIO_ENCODING_OGG_OPUS:
+  OutputAudioEncoding.OUTPUT_AUDIO_ENCODING_MP3: 'OUTPUT_AUDIO_ENCODING_MP3',
+  OutputAudioEncoding.OUTPUT_AUDIO_ENCODING_OGG_OPUS:
       'OUTPUT_AUDIO_ENCODING_OGG_OPUS',
 };

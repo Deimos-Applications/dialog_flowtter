@@ -16,7 +16,7 @@ class HttpUtil {
       body['queryInput'] = queryInput.toJson();
     }
     if (audioConfig != null) {
-      body['audioConfig'] = audioConfig.toJson();
+      body['outputAudioConfig'] = audioConfig.toJson();
     }
     return body;
   }

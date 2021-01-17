@@ -55,7 +55,7 @@ We have plans on testing and adding support for _Windows_, _Linux_ and _MacOS_ a
 
     ```yaml
     dependencies:
-        dialog_flowtter: ^0.1.4
+        dialog_flowtter: ^0.1.5
     ```
 
 2. Make sure you add your dialog_flow_auth.json to the `pubspec.yaml` assets:
@@ -128,7 +128,7 @@ One of the core features of DialogFlow is to detect what a person is trying to s
 
 ## Get the info from the intent
 
-You can access the info returned by DialogFlow from the `DetectIntentResponse` that the `detectIntent` returns.
+You can access the info returned by DialogFlow from the `DetectIntentResponse` that the `detectIntent` function returns.
 
 ### Get the text from the response
 
@@ -155,6 +155,28 @@ See [Message](https://github.com/Deimos-Applications/dialog_flowtter/blob/master
   
   Message messageResponse = response.message;
 ```
+
+### Get audio from the response
+
+1. Set the audio configuration in the `detectIntent` function
+```dart
+  DetectIntentResponse response = await dialogFlowtter.detectIntent(
+    queryInput: QueryInput(text: TextInput(text: "Hi")),
+    
+    // You can set your own configuration with the OutputAudioConfig class
+    audioConfig: OutputAudioConfig(),
+  );
+```
+
+2. Retrieve the audio from the response
+```dart
+  String audioBase64 = response.outputAudio;
+  Uint8List audioBytes = response.outputAudioBytes;
+```
+
+3. Play the audio response with your favorite plugin!
+
+> Check [Soundpool](https://pub.dev/packages/soundpool) for playing the audio from memory
 
 ### Get the response type of the message
 

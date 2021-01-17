@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meta/meta.dart' show required;
 
 import '../../enums/output_audio_encodig.dart';
 import 'synthesize_speech_config.dart';
@@ -20,7 +19,7 @@ class OutputAudioConfig extends Equatable {
   /// Audio encoding of the synthesized audio content.
   ///
   /// For specific values see: https://cloud.google.com/dialogflow/docs/reference/rest/v2/OutputAudioConfig#OutputAudioEncoding
-  final OutputAudioEncodig outputAudioEncodig;
+  final OutputAudioEncoding audioEncoding;
 
   /// The synthesis sample rate (in hertz) for this audio. If not provided,
   /// then the synthesizer will use the default sample rate based on the
@@ -36,7 +35,7 @@ class OutputAudioConfig extends Equatable {
 
   /// {@macro output_audio_config_template}
   OutputAudioConfig({
-    @required this.outputAudioEncodig,
+    this.audioEncoding = OutputAudioEncoding.OUTPUT_AUDIO_ENCODING_LINEAR_16,
     this.sampleRateHertz,
     this.synthesizeSpeechConfig,
   });
@@ -50,7 +49,7 @@ class OutputAudioConfig extends Equatable {
 
   @override
   List<Object> get props => [
-        outputAudioEncodig,
+        audioEncoding,
         sampleRateHertz,
         synthesizeSpeechConfig,
       ];

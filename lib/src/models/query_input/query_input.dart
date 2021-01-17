@@ -19,6 +19,9 @@ part 'query_input.g.dart';
 /// 3. An event that specifies which intent to trigger.
 /// {@endtemplate}
 class QueryInput extends Equatable {
+  // TODO: Add audioConfig option
+  // https://cloud.google.com/dialogflow/es/docs/reference/rest/v2beta1/QueryInput
+
   /// The natural language text to be processed.
   final TextInput text;
 

@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 /// Audio encoding of the output audio format in Text-To-Speech.
-enum OutputAudioEncodig {
+enum OutputAudioEncoding {
   /// Not specified.
   OUTPUT_AUDIO_ENCODING_UNSPECIFIED,
 

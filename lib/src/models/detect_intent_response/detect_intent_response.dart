@@ -1,5 +1,8 @@
 // ignore_for_file: avoid_catches_without_on_clauses
 
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -80,6 +83,11 @@ class DetectIntentResponse extends Equatable {
 
   ///
   Map<String, dynamic> toJson() => _$DetectIntentResponseToJson(this);
+
+  /// Return the bytes of the [outputAudio] base64 encoded String so you can
+  /// reproduce the audio
+  Uint8List get outputAudioBytes =>
+      outputAudio != null ? base64.decode(outputAudio) : null;
 
   @override
   List<Object> get props => [
