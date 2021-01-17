@@ -1,3 +1,9 @@
+# 0.1.4
+
+* Removed Singleton feature in `DialogFlowtter` class
+* Added `jsonPath` getter
+* Added `jsonPath` setter that updates the HTTP client
+
 # 0.1.3
 
 * Updated README.md with package description and advantages

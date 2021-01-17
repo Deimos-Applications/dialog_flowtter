@@ -55,7 +55,7 @@ We have plans on testing and adding support for _Windows_, _Linux_ and _MacOS_ a
 
     ```yaml
     dependencies:
-        dialog_flowtter: ^0.1.3
+        dialog_flowtter: ^0.1.4
     ```
 
 2. Make sure you add your dialog_flow_auth.json to the `pubspec.yaml` assets:
@@ -210,9 +210,7 @@ Check [googleapis_auth](https://pub.dev/packages/googleapis_auth) for more info.
 
 # Further considerations
 
-The `DialogFlowtter` class is a [singleton](https://en.wikipedia.org/wiki/Singleton_pattern), so you don't have to worry about multiple authentication flows being prompted every time you instanciate it.
-
-The class creates an authenticated http client, with the credentials obtained from the DialogFlow Auth JSON, whenever you instanciate the class and saves it for later use.
+Every time you instanciate `DialogFlowtter`, the class creates an authenticated http client, with the credentials obtained from the DialogFlow Auth JSON. Be sure to save this instance and reuse it to avoid memory leaks
 
 ## Memory leaks
 

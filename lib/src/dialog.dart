@@ -114,7 +114,7 @@ class DialogFlowtter {
   /// assets:
   ///   - assets/dialog_flow_auth.json
   /// ```
-  final String jsonPath;
+  String _jsonPath;
 
   AutoRefreshingAuthClient _client;
 
@@ -125,18 +125,13 @@ class DialogFlowtter {
   /// You can override this at any time given and the plugin will use it
   String projectId;
 
-  /// The private instance of DialogFlowtter for later use
-  static final DialogFlowtter _dialogFlowtter = DialogFlowtter._internal();
-
   /// {@macro dialog_flowtter_template}
-  factory DialogFlowtter() => _dialogFlowtter;
-
-  /// {@macro dialog_flowtter_template}
-  DialogFlowtter._internal({
+  DialogFlowtter({
     this.sessionId = _kDefaultSessionId,
-    this.jsonPath = kDefaultJsonPath,
+    jsonPath = kDefaultJsonPath,
   }) {
     EquatableConfig.stringify = true;
+    _jsonPath = jsonPath;
   }
 
   /// Processes a natural language query and returns structured,
@@ -150,17 +145,7 @@ class DialogFlowtter {
     @required QueryInput queryInput,
     OutputAudioConfig audioConfig,
   }) async {
-    if (_client == null) {
-      Map<String, dynamic> json = await getJsonInfo(jsonPath);
-      if (json == null) {
-        throw Exception(
-          '$jsonPath file not found. '
-          'Remember to add the file to your pubspec.yaml',
-        );
-      }
-      projectId ??= json['project_id'];
-      _client = await getClient(json);
-    }
+    if (_client == null) await _updateHttpClient();
 
     var body = HttpUtil.getBody(
       queryParams: queryParams,
@@ -196,7 +181,7 @@ class DialogFlowtter {
   }
 
   /// Returns an authenticated HTTP client with the given credentials in the
-  /// [json] obtained from [jsonPath]
+  /// [json] obtained from [_jsonPath]
   static Future<AutoRefreshingAuthClient> getClient(
     Map<String, dynamic> json,
   ) async {
@@ -217,6 +202,29 @@ class DialogFlowtter {
     _client = null;
   }
 
+  /// Retrieves auth credentials from the JSON and creates an HTTP client
+  Future<void> _updateHttpClient() async {
+    Map<String, dynamic> json = await getJsonInfo(_jsonPath);
+    if (json == null) {
+      throw Exception(
+        '$_jsonPath file not found. '
+        'Remember to add the file to your pubspec.yaml',
+      );
+    }
+    projectId ??= json['project_id'];
+    _client = await getClient(json);
+  }
+
   /// The authenticated client used by the package to make http requests
   AutoRefreshingAuthClient get client => _client;
+
+  /// The current path to the JSON with the auth credentials
+  String get jsonPath => _jsonPath;
+
+  /// Set the json path to get the auth credentials and update the HTTP client
+  /// that's been used to make the HTTP request with the new credentials
+  set jsonPath(String path) {
+    _jsonPath = path;
+    _updateHttpClient();
+  }
 }
