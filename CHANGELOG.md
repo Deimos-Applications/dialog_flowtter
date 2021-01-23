@@ -1,3 +1,10 @@
+# 0.2.0 
+
+* __BREAKING__: Added support to fetch auth credentials in various ways
+  * Url JSON fetch
+  * Local file fetch
+  * In memory JSON provided
+
 # 0.1.5
 
 * Added the ability to fetch `outputAudio` 
