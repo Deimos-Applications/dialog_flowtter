@@ -32,10 +32,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final DialogFlowtter dialogFlowtter = DialogFlowtter();
+  DialogFlowtter dialogFlowtter;
   final TextEditingController _controller = TextEditingController();
 
   List<Map<String, dynamic>> messages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    DialogFlowtter.fromFile().then((instance) => dialogFlowtter = instance);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,5 +108,11 @@ class _MyHomePageState extends State<MyHomePage> {
       'message': message,
       'isUserMessage': isUserMessage ?? false,
     });
+  }
+
+  @override
+  void dispose() {
+    dialogFlowtter.dispose();
+    super.dispose();
   }
 }

@@ -5,6 +5,7 @@ export 'src/enums/entity_override_mode.dart';
 export 'src/enums/message_type.dart';
 export 'src/enums/output_audio_encodig.dart';
 export 'src/enums/ssml_voice_gender.dart';
+export 'src/models/auth_credentials.dart';
 export 'src/models/context.dart';
 export 'src/models/detect_intent_response/detect_intent_response.dart';
 export 'src/models/detect_intent_response/query_result.dart';
