@@ -83,6 +83,50 @@ Refer to [Create a service account and download the private key file](https://cl
 
 # How to use
 
+## Retrieve your keys
+
+You can set your _DialogFlow_ authentication keys in various ways.
+
+1. From an in-memory JSON
+
+  ```dart
+  DialogAuthCredentials credentials = DialogAuthCredentials.fromJson(json);
+  ```
+
+2. From a JSON file 
+   
+  ```dart
+  DialogAuthCredentials credentials = await DialogAuthCredentials.fromFile(path);
+  ```
+
+  > This method is asynchronous!
+
+3. From the Network
+
+  ```dart
+  DialogAuthCredentials credentials = await DialogAuthCredentials.fromNetwork(url);
+  ```
+
+Then, pass your credentials to you `DialogFlowtter` class
+
+  ```dart
+  DialogFlowtter instance = DialogFlowtter(
+    credentials: credentials,
+  );
+  ```
+
+> You can also use the shorthand expression of these methods when instanciating the `DialogFlowtter` class
+
+  ```dart
+  DialogFlowtter jsonInstance = DialogFlowtter.fromJson(json);
+
+  //! async
+  DialogFlowtter fileInstance = await DialogFlowtter.fromFile(path);
+
+  //! async
+  DialogFlowtter networkInstance = await DialogFlowtter.fromNetwork(url);
+  ```
+
 ## Detect intent
 
 One of the core features of DialogFlow is to detect what a person is trying to say. You can do that by detecting an intent that you have defined in your [DialogFlow console](https://dialogflow.cloud.google.com/)
@@ -93,15 +137,8 @@ One of the core features of DialogFlow is to detect what a person is trying to s
   
   ```dart
     final DialogFlowtter dialogFlowtter = DialogFlowtter(
+      credentials: credentials,
       sessionId: "YOUR_SESSION_ID_HERE",
-    );
-  ```
-
-  (OPTIONAL) Change the JSON path to the one you're using. This defaults to `assets/dialog_flow_auth.json`.
-
-  ```dart
-    DialogFlowtter(
-      jsonPath: "YOUR_JSON_PATH_HERE",
     );
   ```
 
@@ -201,7 +238,9 @@ You can change the Project ID that `DialogFlowtter` will use to find your intent
 1. Create an instance of `DialogFlowtter`
 
   ```dart
-    final DialogFlowtter dialogFlowtter = DialogFlowtter();
+    final DialogFlowtter dialogFlowtter = DialogFlowtter(
+      credentials: credentials,
+    );
   ```
 
 2. Change the `projectId` prop of the instance;
@@ -213,7 +252,9 @@ You can change the Project ID that `DialogFlowtter` will use to find your intent
 - Pro tip. You can do the exact same thing as above with the special Dart's [cascade notation](https://dart.dev/guides/language/language-tour#cascade-notation-).
 
   ```dart
-    final DialogFlowtter dialogFlowtter = DialogFlowtter()..projectId = "deimos-apps-0905";
+    final DialogFlowtter dialogFlowtter = DialogFlowtter(
+      credentials: credentials,
+    )..projectId = "deimos-apps-0905";
   ```
 
 ## Make authenticated http requests to your DialogFlow project
@@ -224,7 +265,11 @@ Keep in mind that this can become `null` if you have disposed your instance befo
 
 ## Create your own authenticated http client
 
-You can get an authenticated, auto refreshing http client with your custom json data if you call the static `DialogFlowtter.getClient(yourJson)` function.
+You can get an authenticated, auto refreshing http client with your custom json data if you call the static function 
+```dart
+final credentials = DialogAuthCredentials.fromJson(yourJson);
+final client = DialogFlowtter.getClient(credentials)
+```
 
 Keep in mind that this only authenticates with json provided by Google.
 
@@ -247,6 +292,7 @@ We have coded almost every model that you may need to use when implementing this
 # TO-DO
 
 - [x] Add support for cards, images, etc.
+- [x] Memory, file and remote auth JSON
 - [ ] Secure DialogFlow auth JSON
 - [ ] Support audio queries
 - [ ] Add a catalog of supported languages

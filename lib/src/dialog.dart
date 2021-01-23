@@ -1,12 +1,11 @@
 import 'dart:convert' show jsonDecode, jsonEncode;
 
 import 'package:equatable/equatable.dart' show EquatableConfig;
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:googleapis_auth/auth.dart'
-    show AutoRefreshingAuthClient, ServiceAccountCredentials;
+import 'package:googleapis_auth/auth.dart' show AutoRefreshingAuthClient;
 import 'package:googleapis_auth/auth_io.dart' show clientViaServiceAccount;
 import 'package:meta/meta.dart' show required;
 
+import 'models/auth_credentials.dart';
 import 'models/detect_intent_response/detect_intent_response.dart';
 import 'models/output_audio_config/output_audio_config.dart';
 import 'models/query_input/query_input.dart';
@@ -26,18 +25,10 @@ import 'utils/http_util.dart';
 ///
 /// ```dart
 ///   final DialogFlowtter dialogFlowtter = DialogFlowtter(
+///     credentials: credentials,
 ///     sessionId: "YOUR_SESSION_ID_HERE",
 ///   );
 /// ```
-///
-/// (OPTIONAL) Change the JSON path to the one you're using. This defaults
-/// to `assets/dialog_flow_auth.json`.
-///
-///   ```dart
-///     DialogFlowtter(
-///       jsonPath: "YOUR_JSON_PATH_HERE",
-///     );
-///   ```
 ///
 /// 2. Create a `QueryInput` where you can specify what data you want to send
 /// to DialogFlow.
@@ -69,7 +60,9 @@ import 'utils/http_util.dart';
 /// 1. Create an instance of `DialogFlowtter`
 ///
 ///   ```dart
-///     final DialogFlowtter dialogFlowtter = DialogFlowtter();
+///     final DialogFlowtter dialogFlowtter = DialogFlowtter(
+///       credentials: credentials,
+///     );
 ///   ```
 ///
 /// 2. Change the `projectId` prop of the instance;
@@ -107,15 +100,6 @@ class DialogFlowtter {
   /// {@macro session_recommend_template}
   final String sessionId;
 
-  /// The path of the json file downloaded from the DialogFlow console.
-  ///
-  /// Remember to add your file to the __pubspec.yaml__ file
-  /// ```yaml
-  /// assets:
-  ///   - assets/dialog_flow_auth.json
-  /// ```
-  String _jsonPath;
-
   AutoRefreshingAuthClient _client;
 
   /// The associated [projectId]
@@ -125,13 +109,69 @@ class DialogFlowtter {
   /// You can override this at any time given and the plugin will use it
   String projectId;
 
+  /// The auth credentials needed by [DialogFlowtter] to authenticate the API
+  /// http calls
+  final DialogAuthCredentials credentials;
+
   /// {@macro dialog_flowtter_template}
   DialogFlowtter({
+    this.projectId,
     this.sessionId = _kDefaultSessionId,
-    jsonPath = kDefaultJsonPath,
+    @required this.credentials,
   }) {
     EquatableConfig.stringify = true;
-    _jsonPath = jsonPath;
+  }
+
+  /// Creates a [DialogFlowtter] instance from the JSON given
+  ///
+  /// {@macro dialog_flowtter_template}
+  factory DialogFlowtter.fromJson(
+    Map<String, dynamic> json, {
+    String projectId,
+    String sessionId,
+  }) {
+    DialogAuthCredentials creds = DialogAuthCredentials.fromJson(json);
+    return DialogFlowtter(
+      credentials: creds,
+      projectId: projectId,
+      sessionId: sessionId,
+    );
+  }
+
+  /// Creates a [DialogFlowtter] instance from the JSON in the given [path]
+  ///
+  /// Since the file must be read from the disk, this operation is asynchronous
+  /// and you need to await for the value to be ready
+  ///
+  /// {@macro dialog_flowtter_template}
+  static Future<DialogFlowtter> fromFile({
+    String path = kDefaultJsonPath,
+    String projectId,
+    String sessionId,
+  }) async {
+    DialogAuthCredentials creds = await DialogAuthCredentials.fromFile(path);
+    return DialogFlowtter(
+      credentials: creds,
+      projectId: projectId,
+      sessionId: sessionId,
+    );
+  }
+
+  /// Creates a [DialogFlowtter] instance with the JSON obtained from the given
+  /// [url]
+  ///
+  /// {@macro dialog_flowtter_template}
+  static Future<DialogFlowtter> fromNetwork(
+    String url, {
+    String projectId,
+    String sessionId,
+  }) async {
+    DialogAuthCredentials creds = await DialogAuthCredentials.fromNetwork(url);
+    return DialogFlowtter(
+      credentials: creds,
+      projectId: projectId,
+      sessionId: sessionId,
+    );
   }
 
   /// Processes a natural language query and returns structured,
@@ -169,27 +209,12 @@ class DialogFlowtter {
     return DetectIntentResponse.fromJson(json);
   }
 
-  /// Returns the JSON Auth info from the specified path
-  Future<Map<String, dynamic>> getJsonInfo(String _jsonPath) async {
-    try {
-      String data = await rootBundle.loadString(_jsonPath);
-      return jsonDecode(data);
-      // ignore: avoid_catches_without_on_clauses
-    } catch (e) {
-      return null;
-    }
-  }
-
-  /// Returns an authenticated HTTP client with the given credentials in the
-  /// [json] obtained from [_jsonPath]
+  /// Returns an authenticated HTTP client
   static Future<AutoRefreshingAuthClient> getClient(
-    Map<String, dynamic> json,
+    DialogAuthCredentials credentials,
   ) async {
-    ServiceAccountCredentials credentials =
-        ServiceAccountCredentials.fromJson(json);
-
     AutoRefreshingAuthClient client = await clientViaServiceAccount(
-      credentials,
+      credentials.serviceAccountCredentials,
       [_kDialogFlowScope],
     );
     return client;
@@ -204,27 +229,10 @@ class DialogFlowtter {
 
   /// Retrieves auth credentials from the JSON and creates an HTTP client
   Future<void> _updateHttpClient() async {
-    Map<String, dynamic> json = await getJsonInfo(_jsonPath);
-    if (json == null) {
-      throw Exception(
-        '$_jsonPath file not found. '
-        'Remember to add the file to your pubspec.yaml',
-      );
-    }
-    projectId ??= json['project_id'];
-    _client = await getClient(json);
+    projectId ??= credentials.projectId;
+    _client = await getClient(credentials);
   }
 
   /// The authenticated client used by the package to make http requests
   AutoRefreshingAuthClient get client => _client;
-
-  /// The current path to the JSON with the auth credentials
-  String get jsonPath => _jsonPath;
-
-  /// Set the json path to get the auth credentials and update the HTTP client
-  /// that's been used to make the HTTP request with the new credentials
-  set jsonPath(String path) {
-    _jsonPath = path;
-    _updateHttpClient();
-  }
 }
