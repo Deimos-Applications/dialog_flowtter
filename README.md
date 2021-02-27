@@ -26,6 +26,8 @@
 
 # About the package
 
+> Dialog Flow on Flutter, now with Null Safety Support!!!
+
 DialogFlowtter is a package that helps you to build integrations with DialogFlow easier and faster.
 
 - Authenticate with Google Auth Json
@@ -55,7 +57,7 @@ We have plans on testing and adding support for _Windows_, _Linux_ and _MacOS_ a
 
     ```yaml
     dependencies:
-        dialog_flowtter: ^0.1.5
+        dialog_flowtter: ^0.2.0-nullsafety.0
     ```
 
 2. Make sure you add your dialog_flow_auth.json to the `pubspec.yaml` assets:
@@ -137,7 +139,7 @@ You can access the info returned by DialogFlow from the `DetectIntentResponse` t
     queryInput: QueryInput(text: TextInput(text: "Hi")),
   );
   
-  String textResponse = response.text;
+  String? textResponse = response.text;
 
   print(textResponse); // Hi, how may I help you?
 ```
@@ -153,7 +155,7 @@ See [Message](https://github.com/Deimos-Applications/dialog_flowtter/blob/master
     queryInput: QueryInput(text: TextInput(text: "Hi")),
   );
   
-  Message messageResponse = response.message;
+  Message? messageResponse = response.message;
 ```
 
 ### Get audio from the response
@@ -170,8 +172,8 @@ See [Message](https://github.com/Deimos-Applications/dialog_flowtter/blob/master
 
 2. Retrieve the audio from the response
 ```dart
-  String audioBase64 = response.outputAudio;
-  Uint8List audioBytes = response.outputAudioBytes;
+  String? audioBase64 = response.outputAudio;
+  Uint8List? audioBytes = response.outputAudioBytes;
 ```
 
 3. Play the audio response with your favorite plugin!
@@ -181,7 +183,7 @@ See [Message](https://github.com/Deimos-Applications/dialog_flowtter/blob/master
 ### Get the response type of the message
 
 ```dart
-  MessageType messageType = response.message.type;
+  MessageType? messageType = response.message?.type;
 
   print(messageType); /// MessageType.card
 ```
@@ -246,6 +248,7 @@ We have coded almost every model that you may need to use when implementing this
 
 # TO-DO
 
+- [x] Null Safety support
 - [x] Add support for cards, images, etc.
 - [ ] Secure DialogFlow auth JSON
 - [ ] Support audio queries
