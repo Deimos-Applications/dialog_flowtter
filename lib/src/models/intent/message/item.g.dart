@@ -11,8 +11,8 @@ DialogItem _$DialogItemFromJson(Map<String, dynamic> json) {
     info: json['info'] == null
         ? null
         : SelectItemInfo.fromJson(json['info'] as Map<String, dynamic>),
-    title: json['title'] as String,
-    description: json['description'] as String,
+    title: json['title'] as String?,
+    description: json['description'] as String?,
     image: json['image'] == null
         ? null
         : DialogImage.fromJson(json['image'] as Map<String, dynamic>),

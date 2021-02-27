@@ -5,7 +5,7 @@ class AppBody extends StatelessWidget {
   final List<Map<String, dynamic>> messages;
 
   const AppBody({
-    Key key,
+    Key? key,
     this.messages = const [],
   }) : super(key: key);
 
@@ -44,8 +44,8 @@ class _MessageContainer extends StatelessWidget {
   final bool isUserMessage;
 
   const _MessageContainer({
-    Key key,
-    @required this.message,
+    Key? key,
+    required this.message,
     this.isUserMessage = false,
   }) : super(key: key);
 
@@ -57,7 +57,7 @@ class _MessageContainer extends StatelessWidget {
         builder: (context, constrains) {
           switch (message.type) {
             case MessageType.card:
-              return _CardContainer(card: message.card);
+              return _CardContainer(card: message.card!);
             case MessageType.text:
             default:
               return Container(
@@ -67,7 +67,7 @@ class _MessageContainer extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.all(10),
                 child: Text(
-                  message?.text?.text[0] ?? '',
+                  message.text?.text?[0] ?? '',
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -84,8 +84,8 @@ class _CardContainer extends StatelessWidget {
   final DialogCard card;
 
   const _CardContainer({
-    Key key,
-    @required this.card,
+    Key? key,
+    required this.card,
   }) : super(key: key);
 
   @override
@@ -97,13 +97,14 @@ class _CardContainer extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              constraints: BoxConstraints.expand(height: 150),
-              child: Image.network(
-                card.imageUri,
-                fit: BoxFit.cover,
+            if (card.imageUri != null)
+              Container(
+                constraints: BoxConstraints.expand(height: 150),
+                child: Image.network(
+                  card.imageUri!,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -111,7 +112,7 @@ class _CardContainer extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    card.title,
+                    card.title!,
                     style: TextStyle(
                       fontSize: 22,
                       color: Colors.white,
@@ -122,11 +123,11 @@ class _CardContainer extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
-                        card.subtitle,
+                        card.subtitle!,
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-                  if (card.buttons.length > 0)
+                  if (card.buttons!.isNotEmpty)
                     Container(
                       constraints: BoxConstraints(
                         maxHeight: 40,
@@ -136,20 +137,24 @@ class _CardContainer extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         // padding: const EdgeInsets.symmetric(vertical: 5),
                         itemBuilder: (context, i) {
-                          CardButton button = card.buttons[i];
-                          return FlatButton(
-                            textColor: Colors.white,
-                            color: Colors.blue,
-                            child: Text(button.text),
+                          CardButton button = card.buttons![i];
+                          return TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              primary: Colors.white,
+                            ),
+                            child: Text(button.text ?? ''),
                             onPressed: () {
-                              Scaffold.of(context).showSnackBar(SnackBar(
-                                content: Text(button.postback),
-                              ));
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(button.postback ?? ''),
+                                ),
+                              );
                             },
                           );
                         },
                         separatorBuilder: (_, i) => Container(width: 10),
-                        itemCount: card.buttons.length,
+                        itemCount: card.buttons!.length,
                       ),
                     ),
                 ],

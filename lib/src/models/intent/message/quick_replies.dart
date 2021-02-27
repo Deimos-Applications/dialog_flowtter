@@ -10,10 +10,10 @@ part 'quick_replies.g.dart';
 /// {@endtemplate}
 class QuickReplies extends Equatable {
   /// The title of the collection of quick replies.
-  final String title;
+  final String? title;
 
   /// The collection of quick replies.
-  final List<String> quickReplies;
+  final List<String>? quickReplies;
 
   /// {@macro quick_replies_template}
   QuickReplies({
@@ -29,7 +29,7 @@ class QuickReplies extends Equatable {
   Map<String, dynamic> toJson() => _$QuickRepliesToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         title,
         quickReplies,
       ];

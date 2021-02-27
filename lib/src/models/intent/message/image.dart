@@ -10,11 +10,11 @@ part 'image.g.dart';
 /// {@endtemplate}
 class DialogImage extends Equatable {
   /// The public URI to an image file.
-  final String imageUri;
+  final String? imageUri;
 
   /// A text description of the image to be used for accessibility, e.g.,
   /// screen readers.
-  final String accessibilityText;
+  final String? accessibilityText;
 
   /// {@macro dialog_image_template}
   DialogImage({
@@ -30,7 +30,7 @@ class DialogImage extends Equatable {
   Map<String, dynamic> toJson() => _$DialogImageToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         imageUri,
         accessibilityText,
       ];

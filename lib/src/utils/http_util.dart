@@ -4,9 +4,9 @@ import '../../dialog_flowtter.dart';
 class HttpUtil {
   /// Returns the body of the http request filtering the null params
   static Map<String, dynamic> getBody({
-    QueryParameters queryParams,
-    QueryInput queryInput,
-    OutputAudioConfig audioConfig,
+    QueryParameters? queryParams,
+    QueryInput? queryInput,
+    OutputAudioConfig? audioConfig,
   }) {
     Map<String, dynamic> body = {};
     if (queryParams != null) {
@@ -22,7 +22,7 @@ class HttpUtil {
   }
 
   /// Returns the formated session URI
-  static String getFormatedSession(String projectId, String sessionId) {
+  static String getFormatedSession(String? projectId, String sessionId) {
     return 'projects/$projectId/agent/sessions/$sessionId';
   }
 

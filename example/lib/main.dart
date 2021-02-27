@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title ?? ''),
       ),
       body: Column(
         children: [
@@ -93,11 +93,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (response.message == null) return;
     setState(() {
-      addMessage(response.message);
+      addMessage(response.message!);
     });
   }
 
-  void addMessage(Message message, [bool isUserMessage]) {
+  void addMessage(Message message, [bool? isUserMessage]) {
     messages.add({
       'message': message,
       'isUserMessage': isUserMessage ?? false,

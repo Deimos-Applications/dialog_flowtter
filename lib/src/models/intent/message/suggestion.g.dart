@@ -8,7 +8,7 @@ part of 'suggestion.dart';
 
 Suggestion _$SuggestionFromJson(Map<String, dynamic> json) {
   return Suggestion(
-    title: json['title'] as String,
+    title: json['title'] as String?,
   );
 }
 

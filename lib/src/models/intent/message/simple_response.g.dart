@@ -8,9 +8,9 @@ part of 'simple_response.dart';
 
 SimpleResponse _$SimpleResponseFromJson(Map<String, dynamic> json) {
   return SimpleResponse(
-    textToSpeech: json['textToSpeech'] as String,
-    ssml: json['ssml'] as String,
-    displayText: json['displayText'] as String,
+    textToSpeech: json['textToSpeech'] as String?,
+    ssml: json['ssml'] as String?,
+    displayText: json['displayText'] as String?,
   );
 }
 

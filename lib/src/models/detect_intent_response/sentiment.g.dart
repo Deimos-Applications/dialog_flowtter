@@ -8,8 +8,8 @@ part of 'sentiment.dart';
 
 Sentiment _$SentimentFromJson(Map<String, dynamic> json) {
   return Sentiment(
-    score: (json['score'] as num)?.toDouble(),
-    magnitude: (json['magnitude'] as num)?.toDouble(),
+    score: (json['score'] as num?)?.toDouble(),
+    magnitude: (json['magnitude'] as num?)?.toDouble(),
   );
 }
 

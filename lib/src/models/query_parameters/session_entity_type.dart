@@ -20,14 +20,14 @@ part 'session_entity_type.g.dart';
 /// {@endtemplate}
 class SessionEntityType extends Equatable {
   /// The unique identifier of this session entity type.
-  final String name;
+  final String? name;
 
   /// Indicates whether the additional data should override or supplement the
   /// custom entity type definition.
-  final EntityOverrideMode entityOverrideMode;
+  final EntityOverrideMode? entityOverrideMode;
 
   /// The collection of entities associated with this session entity type.
-  final List<Entity> entities;
+  final List<Entity>? entities;
 
   /// {@macro session_entity_type_template}
   SessionEntityType({
@@ -44,7 +44,7 @@ class SessionEntityType extends Equatable {
   Map<String, dynamic> toJson() => _$SessionEntityTypeToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         name,
         entityOverrideMode,
         entities,

@@ -18,24 +18,24 @@ class QueryParameters extends Equatable {
   /// [time zone database](https://www.iana.org/time-zones),
   /// e.g., America/New_York, Europe/Paris. If not provided, the time zone
   /// specified in agent settings is used.
-  final String timeZone;
+  final String? timeZone;
 
   /// The geo location of this conversational query.
-  final LatLng geoLocation;
+  final LatLng? geoLocation;
 
   /// The collection of contexts to be activated before this query is executed.
-  final List<Context> contexts;
+  final List<Context>? contexts;
 
   /// Specifies whether to delete all contexts in the current session before
   /// the new ones are activated.
-  final bool resetContexts;
+  final bool? resetContexts;
 
   /// Additional session entity types to replace or extend developer entity
   /// types with.
   ///
   /// The entity synonyms apply to all languages and persist for the session
   /// of this query.
-  final List<SessionEntityType> sessionEntityTypes;
+  final List<SessionEntityType>? sessionEntityTypes;
 
   /// This field can be used to pass custom data to your webhook.
   /// Arbitrary JSON objects are supported.
@@ -43,12 +43,12 @@ class QueryParameters extends Equatable {
   /// If supplied, the value is used to populate the
   /// [WebhookRequest.original_detect_intent_request.payload] field sent to
   /// your webhook.
-  final Map<String, dynamic> payload;
+  final Map<String, dynamic>? payload;
 
   /// Configures the type of sentiment analysis to perform.
   ///
   /// If not provided, sentiment analysis is not performed.
-  final SentimentAnalysisRequestConfig sentimentAnalysisRequestConfig;
+  final SentimentAnalysisRequestConfig? sentimentAnalysisRequestConfig;
 
   /// {@macro query_parameters_template}
   QueryParameters({
@@ -69,7 +69,7 @@ class QueryParameters extends Equatable {
   Map<String, dynamic> toJson() => _$QueryParametersToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         timeZone,
         geoLocation,
         contexts,

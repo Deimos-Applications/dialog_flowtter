@@ -10,7 +10,7 @@ part 'open_uri_action.g.dart';
 /// {@endtemplate}
 class OpenUriAction extends Equatable {
   /// The HTTP or HTTPS scheme URI.
-  final String uri;
+  final String? uri;
 
   /// {@macro open_uri_action_template}
   OpenUriAction({
@@ -25,7 +25,7 @@ class OpenUriAction extends Equatable {
   Map<String, dynamic> toJson() => _$OpenUriActionToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         uri,
       ];
 }

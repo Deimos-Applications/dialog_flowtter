@@ -22,7 +22,7 @@ class Entity extends Equatable {
   ///
   /// - A string that can contain references to other entity types
   /// (with or without aliases).
-  final String value;
+  final String? value;
 
   /// A collection of value synonyms.
   ///
@@ -32,7 +32,7 @@ class Entity extends Equatable {
   /// For [KIND_LIST] entity types:
   ///
   /// - This collection must contain exactly one synonym equal to value.
-  final List<String> synonyms;
+  final List<String>? synonyms;
 
   /// {@macro entry_template}
   Entity({
@@ -47,7 +47,7 @@ class Entity extends Equatable {
   Map<String, dynamic> toJson() => _$EntityToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         value,
         synonyms,
       ];

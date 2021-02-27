@@ -9,7 +9,7 @@ part of 'sentiment_analysis_request_config.dart';
 SentimentAnalysisRequestConfig _$SentimentAnalysisRequestConfigFromJson(
     Map<String, dynamic> json) {
   return SentimentAnalysisRequestConfig(
-    analyzeQueryTextSentiment: json['analyzeQueryTextSentiment'] as bool,
+    analyzeQueryTextSentiment: json['analyzeQueryTextSentiment'] as bool?,
   );
 }
 

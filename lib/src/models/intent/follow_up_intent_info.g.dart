@@ -8,8 +8,8 @@ part of 'follow_up_intent_info.dart';
 
 FollowUpIntentInfo _$FollowUpIntentInfoFromJson(Map<String, dynamic> json) {
   return FollowUpIntentInfo(
-    followUpIntentName: json['followUpIntentName'] as String,
-    parentFollowUpIntentName: json['parentFollowUpIntentName'] as String,
+    followUpIntentName: json['followUpIntentName'] as String?,
+    parentFollowUpIntentName: json['parentFollowUpIntentName'] as String?,
   );
 }
 

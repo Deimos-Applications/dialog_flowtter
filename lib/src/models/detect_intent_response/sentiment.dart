@@ -12,12 +12,12 @@ part 'sentiment.g.dart';
 class Sentiment extends Equatable {
   /// Sentiment score between -1.0 (negative sentiment) and 1.0
   /// (positive sentiment).
-  final double score;
+  final double? score;
 
   /// A non-negative number in the [0, +inf) range, which represents the
   /// absolute magnitude of sentiment, regardless of score
   /// (positive or negative).
-  final double magnitude;
+  final double? magnitude;
 
   /// {@macro sentiment_template}
   Sentiment({
@@ -33,7 +33,7 @@ class Sentiment extends Equatable {
   Map<String, dynamic> toJson() => _$SentimentToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         score,
         magnitude,
       ];

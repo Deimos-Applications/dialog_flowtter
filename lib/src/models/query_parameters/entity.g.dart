@@ -8,8 +8,9 @@ part of 'entity.dart';
 
 Entity _$EntityFromJson(Map<String, dynamic> json) {
   return Entity(
-    value: json['value'] as String,
-    synonyms: (json['synonyms'] as List)?.map((e) => e as String)?.toList(),
+    value: json['value'] as String?,
+    synonyms:
+        (json['synonyms'] as List<dynamic>?)?.map((e) => e as String).toList(),
   );
 }
 

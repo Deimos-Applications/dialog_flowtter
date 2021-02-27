@@ -26,7 +26,7 @@ class DetectIntentResponse extends Equatable {
 
   /// The selected results of the conversational query or event processing.
   /// See [alternativeQueryResults] for additional potential results.
-  final QueryResult queryResult;
+  final QueryResult? queryResult;
 
   /// The audio data bytes encoded as specified in the request.
   ///
@@ -46,35 +46,35 @@ class DetectIntentResponse extends Equatable {
   /// In these cases, only the top-most-level audio output has content.
   ///
   /// A base64-encoded string.
-  final String outputAudio;
+  final String? outputAudio;
 
   /// The config used by the speech synthesizer to generate the output audio.
-  final OutputAudioConfig outputAudioConfig;
+  final OutputAudioConfig? outputAudioConfig;
 
   /// {@macro detect_intent_response_template}
   DetectIntentResponse({
-    this.responseId,
+    required this.responseId,
     this.queryResult,
     this.outputAudio,
     this.outputAudioConfig,
   });
 
   /// Short hand term for the first fullfilment message returned by the agent
-  Message get message {
-    if (queryResult == null || queryResult.fulfillmentMessages.length == 0) {
+  Message? get message {
+    if (queryResult == null || queryResult!.fulfillmentMessages!.isEmpty) {
       print("Theres no messages in this response");
       return null;
     }
-    return queryResult.fulfillmentMessages[0];
+    return queryResult!.fulfillmentMessages![0];
   }
 
   /// Short hand term for the first text message returned by the agent
-  String get text {
-    if (message?.text == null || message.text.text.length == 0) {
+  String? get text {
+    if (message?.text == null || message!.text!.text!.isEmpty) {
       print("Theres no texts in this response");
       return null;
     }
-    return message.text.text[0];
+    return message!.text!.text![0];
   }
 
   ///
@@ -86,14 +86,14 @@ class DetectIntentResponse extends Equatable {
 
   /// Return the bytes of the [outputAudio] base64 encoded String so you can
   /// reproduce the audio
-  Uint8List get outputAudioBytes =>
-      outputAudio != null ? base64.decode(outputAudio) : null;
+  Uint8List? get outputAudioBytes =>
+      outputAudio != null ? base64.decode(outputAudio!) : null;
 
   @override
   List<Object> get props => [
         responseId,
-        queryResult,
-        outputAudio,
-        outputAudioConfig,
+        queryResult!,
+        outputAudio!,
+        outputAudioConfig!,
       ];
 }

@@ -5,7 +5,6 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:googleapis_auth/auth.dart'
     show AutoRefreshingAuthClient, ServiceAccountCredentials;
 import 'package:googleapis_auth/auth_io.dart' show clientViaServiceAccount;
-import 'package:meta/meta.dart' show required;
 
 import 'models/detect_intent_response/detect_intent_response.dart';
 import 'models/output_audio_config/output_audio_config.dart';
@@ -114,16 +113,16 @@ class DialogFlowtter {
   /// assets:
   ///   - assets/dialog_flow_auth.json
   /// ```
-  String _jsonPath;
+  String? _jsonPath;
 
-  AutoRefreshingAuthClient _client;
+  AutoRefreshingAuthClient? _client;
 
   /// The associated [projectId]
   ///
   /// If not specified, it would be obtained from the JSON given
   ///
   /// You can override this at any time given and the plugin will use it
-  String projectId;
+  String? projectId;
 
   /// {@macro dialog_flowtter_template}
   DialogFlowtter({
@@ -141,25 +140,30 @@ class DialogFlowtter {
   /// entity types to be updated, which in turn might affect results of future
   /// queries.
   Future<DetectIntentResponse> detectIntent({
-    QueryParameters queryParams,
-    @required QueryInput queryInput,
-    OutputAudioConfig audioConfig,
+    QueryParameters? queryParams,
+    required QueryInput queryInput,
+    OutputAudioConfig? audioConfig,
   }) async {
     if (_client == null) await _updateHttpClient();
 
-    var body = HttpUtil.getBody(
+    final body = HttpUtil.getBody(
       queryParams: queryParams,
       queryInput: queryInput,
       audioConfig: audioConfig,
     );
 
-    var response = await _client.post(
-      '$kDialogFlowUrl/$kDialogFlowApiVersion/${HttpUtil.getFormatedSession(projectId, sessionId)}:detectIntent',
+    final uri = Uri.parse(
+      '$kDialogFlowUrl/$kDialogFlowApiVersion/'
+      '${HttpUtil.getFormatedSession(projectId, sessionId)}:detectIntent',
+    );
+
+    final response = await _client!.post(
+      uri,
       body: jsonEncode(body),
     );
 
     if (!HttpUtil.isValidStatusCode(response.statusCode)) {
-      var _json = jsonDecode(response.body)["error"];
+      final _json = jsonDecode(response.body)["error"];
       throw Exception(
         "${_json['status']}: ${_json['message']}, (${_json['code']})",
       );
@@ -170,7 +174,7 @@ class DialogFlowtter {
   }
 
   /// Returns the JSON Auth info from the specified path
-  Future<Map<String, dynamic>> getJsonInfo(String _jsonPath) async {
+  Future<Map<String, dynamic>?> getJsonInfo(String _jsonPath) async {
     try {
       String data = await rootBundle.loadString(_jsonPath);
       return jsonDecode(data);
@@ -204,7 +208,7 @@ class DialogFlowtter {
 
   /// Retrieves auth credentials from the JSON and creates an HTTP client
   Future<void> _updateHttpClient() async {
-    Map<String, dynamic> json = await getJsonInfo(_jsonPath);
+    Map<String, dynamic>? json = await getJsonInfo(_jsonPath!);
     if (json == null) {
       throw Exception(
         '$_jsonPath file not found. '
@@ -216,14 +220,14 @@ class DialogFlowtter {
   }
 
   /// The authenticated client used by the package to make http requests
-  AutoRefreshingAuthClient get client => _client;
+  AutoRefreshingAuthClient? get client => _client;
 
   /// The current path to the JSON with the auth credentials
-  String get jsonPath => _jsonPath;
+  String? get jsonPath => _jsonPath;
 
   /// Set the json path to get the auth credentials and update the HTTP client
   /// that's been used to make the HTTP request with the new credentials
-  set jsonPath(String path) {
+  set jsonPath(String? path) {
     _jsonPath = path;
     _updateHttpClient();
   }

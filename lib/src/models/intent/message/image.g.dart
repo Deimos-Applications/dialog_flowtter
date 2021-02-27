@@ -8,8 +8,8 @@ part of 'image.dart';
 
 DialogImage _$DialogImageFromJson(Map<String, dynamic> json) {
   return DialogImage(
-    imageUri: json['imageUri'] as String,
-    accessibilityText: json['accessibilityText'] as String,
+    imageUri: json['imageUri'] as String?,
+    accessibilityText: json['accessibilityText'] as String?,
   );
 }
 

@@ -10,7 +10,7 @@ part 'text.g.dart';
 /// {@endtemplate}
 class DialogText extends Equatable {
   /// The collection of the agent's responses.
-  final List<String> text;
+  final List<String>? text;
 
   /// {@macro text_template}
   DialogText({
@@ -25,7 +25,7 @@ class DialogText extends Equatable {
   Map<String, dynamic> toJson() => _$DialogTextToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         text,
       ];
 }

@@ -8,10 +8,9 @@ part of 'carousel_select.dart';
 
 CarouselSelect _$CarouselSelectFromJson(Map<String, dynamic> json) {
   return CarouselSelect(
-    items: (json['items'] as List)
-        ?.map((e) =>
-            e == null ? null : DialogItem.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    items: (json['items'] as List<dynamic>?)
+        ?.map((e) => DialogItem.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -24,6 +23,6 @@ Map<String, dynamic> _$CarouselSelectToJson(CarouselSelect instance) {
     }
   }
 
-  writeNotNull('items', instance.items?.map((e) => e?.toJson())?.toList());
+  writeNotNull('items', instance.items?.map((e) => e.toJson()).toList());
   return val;
 }

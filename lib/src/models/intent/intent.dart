@@ -24,28 +24,28 @@ part 'intent.g.dart';
 /// {@endtemplate}
 class Intent extends Equatable {
   /// The unique identifier of the intent
-  final String name;
+  final String? name;
 
   /// The name of the intent.
-  final String displayName;
+  final String? displayName;
 
   /// The priority of this intent. Higher numbers represent higher priorities.
-  final int priority;
+  final int? priority;
 
   /// Indicates whether this is a fallback intent.
-  final bool isFallback;
+  final bool? isFallback;
 
   /// Indicates whether Machine Learning is disabled for the intent.
   ///
   /// Note: If mlDisabled setting is set to true, then this intent is not
   /// taken into account during inference in ML ONLY match mode. Also,
   /// auto-markup in the UI is turned off.
-  final bool mlDisabled;
+  final bool? mlDisabled;
 
   /// The list of context names required for this intent to be triggered.
   ///
   /// Format: projects/<Project ID>/agent/sessions/-/contexts/<Context ID>.
-  final List<String> inputContextNames;
+  final List<String>? inputContextNames;
 
   /// The collection of event names that trigger the intent.
   ///
@@ -54,34 +54,34 @@ class Intent extends Equatable {
   /// this intent.
   ///
   /// Event names are limited to 150 characters.
-  final List<String> events;
+  final List<String>? events;
 
   /// The name of the action associated with the intent.
-  final String action;
+  final String? action;
 
   /// Indicates whether to delete all contexts in the current session when
   /// this intent is matched.
-  final bool resetContexts;
+  final bool? resetContexts;
 
   /// The collection of parameters associated with the intent.
-  final List<IntentParameter> parameters;
+  final List<IntentParameter>? parameters;
 
   /// The collection of rich messages corresponding to the [Response] field in
   /// the Dialogflow console.
-  final List<Message> messages;
+  final List<Message>? messages;
 
   /// The unique identifier of the root intent in the chain of followup intents.
   ///
   /// It identifies the correct followup intents chain for this intent.
-  final String rootFollowupIntentName;
+  final String? rootFollowupIntentName;
 
   /// The unique identifier of the parent intent in the chain of
   /// followup intents.
-  final String parentFollowUpIntentName;
+  final String? parentFollowUpIntentName;
 
   /// Information about all followup intents that have this intent as a
   /// direct or indirect parent.
-  final List<FollowUpIntentInfo> followUpIntentInfo;
+  final List<FollowUpIntentInfo>? followUpIntentInfo;
 
   /// {@macro intent_template}
   Intent({
@@ -108,7 +108,7 @@ class Intent extends Equatable {
   Map<String, dynamic> toJson() => _$IntentToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         name,
         displayName,
         priority,

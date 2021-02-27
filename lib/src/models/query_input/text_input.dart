@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meta/meta.dart' show required;
 
 part 'text_input.g.dart';
 
@@ -25,10 +24,9 @@ class TextInput extends Equatable {
 
   /// {@macro text_input_template}
   TextInput({
-    @required this.text,
+    required this.text,
     this.languageCode = 'en',
-  })  : assert(text != null),
-        assert(languageCode != null);
+  });
 
   ///
   factory TextInput.fromJson(Map<String, dynamic> json) =>
