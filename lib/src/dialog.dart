@@ -187,19 +187,24 @@ class DialogFlowtter {
   }) async {
     if (_client == null) await _updateHttpClient();
 
-    var body = HttpUtil.getBody(
+    final body = HttpUtil.getBody(
       queryParams: queryParams,
       queryInput: queryInput,
       audioConfig: audioConfig,
     );
 
-    var response = await _client.post(
-      '$kDialogFlowUrl/$kDialogFlowApiVersion/${HttpUtil.getFormatedSession(projectId, sessionId)}:detectIntent',
+    final uri = Uri.parse(
+      '$kDialogFlowUrl/$kDialogFlowApiVersion/'
+      '${HttpUtil.getFormatedSession(projectId, sessionId)}:detectIntent',
+    );
+
+    final response = await _client.post(
+      uri,
       body: jsonEncode(body),
     );
 
     if (!HttpUtil.isValidStatusCode(response.statusCode)) {
-      var _json = jsonDecode(response.body)["error"];
+      final _json = jsonDecode(response.body)["error"];
       throw Exception(
         "${_json['status']}: ${_json['message']}, (${_json['code']})",
       );

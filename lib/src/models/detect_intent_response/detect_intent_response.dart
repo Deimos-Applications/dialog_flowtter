@@ -61,7 +61,7 @@ class DetectIntentResponse extends Equatable {
 
   /// Short hand term for the first fullfilment message returned by the agent
   Message get message {
-    if (queryResult == null || queryResult.fulfillmentMessages.length == 0) {
+    if (queryResult == null || queryResult.fulfillmentMessages.isEmpty) {
       print("Theres no messages in this response");
       return null;
     }
@@ -70,7 +70,7 @@ class DetectIntentResponse extends Equatable {
 
   /// Short hand term for the first text message returned by the agent
   String get text {
-    if (message?.text == null || message.text.text.length == 0) {
+    if (message?.text == null || message.text.text.isEmpty) {
       print("Theres no texts in this response");
       return null;
     }

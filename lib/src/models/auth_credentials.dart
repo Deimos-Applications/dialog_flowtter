@@ -40,8 +40,10 @@ class DialogAuthCredentials extends Equatable {
 
   /// Creates the auth credentials with the JSON obtained from the given [url]
   static Future<DialogAuthCredentials> fromNetwork(String url) async {
+    final uri = Uri.parse(url);
+
     final response = await http.get(
-      url,
+      uri,
       headers: {
         "Accept": "application/json",
       },

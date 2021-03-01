@@ -137,12 +137,15 @@ class _CardContainer extends StatelessWidget {
                         // padding: const EdgeInsets.symmetric(vertical: 5),
                         itemBuilder: (context, i) {
                           CardButton button = card.buttons[i];
-                          return FlatButton(
-                            textColor: Colors.white,
-                            color: Colors.blue,
+                          return TextButton(
+                            style: TextButton.styleFrom(
+                              primary: Colors.white,
+                              backgroundColor: Colors.blue,
+                            ),
                             child: Text(button.text),
                             onPressed: () {
-                              Scaffold.of(context).showSnackBar(SnackBar(
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
                                 content: Text(button.postback),
                               ));
                             },
