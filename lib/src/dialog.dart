@@ -98,7 +98,7 @@ class DialogFlowtter {
   /// Defaults to [_kDefaultSessionId].
   ///
   /// {@macro session_recommend_template}
-  late final String sessionId;
+  final String sessionId;
 
   AutoRefreshingAuthClient? _client;
 
@@ -128,13 +128,13 @@ class DialogFlowtter {
   factory DialogFlowtter.fromJson(
     Map<String, dynamic> json, {
     String? projectId,
-    String? sessionId,
+    String sessionId = _kDefaultSessionId,
   }) {
     DialogAuthCredentials creds = DialogAuthCredentials.fromJson(json);
     return DialogFlowtter(
       credentials: creds,
       projectId: projectId,
-      sessionId: sessionId!,
+      sessionId: sessionId,
     );
   }
 
@@ -147,13 +147,13 @@ class DialogFlowtter {
   static Future<DialogFlowtter> fromFile({
     String path = kDefaultJsonPath,
     String? projectId,
-    String? sessionId,
+    String sessionId = _kDefaultSessionId,
   }) async {
     DialogAuthCredentials creds = await DialogAuthCredentials.fromFile(path);
     return DialogFlowtter(
       credentials: creds,
       projectId: projectId,
-      sessionId: sessionId!,
+      sessionId: sessionId,
     );
   }
 
@@ -164,13 +164,13 @@ class DialogFlowtter {
   static Future<DialogFlowtter> fromNetwork(
     String url, {
     String? projectId,
-    String? sessionId,
+    String sessionId = _kDefaultSessionId,
   }) async {
     DialogAuthCredentials creds = await DialogAuthCredentials.fromNetwork(url);
     return DialogFlowtter(
       credentials: creds,
       projectId: projectId,
-      sessionId: sessionId!,
+      sessionId: sessionId,
     );
   }
 
