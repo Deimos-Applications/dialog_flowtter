@@ -1,3 +1,7 @@
+# 0.3.0-nullsafety.0
+
+* Added support for null-safety
+
 # 0.2.0 
 
 * __BREAKING__: Added support to fetch auth credentials in various ways
