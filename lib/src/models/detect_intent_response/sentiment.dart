@@ -21,8 +21,8 @@ class Sentiment extends Equatable {
 
   /// {@macro sentiment_template}
   Sentiment({
-    this.score,
-    this.magnitude,
+    required this.score,
+    required this.magnitude,
   });
 
   ///

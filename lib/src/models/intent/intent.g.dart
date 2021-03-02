@@ -8,32 +8,29 @@ part of 'intent.dart';
 
 Intent _$IntentFromJson(Map<String, dynamic> json) {
   return Intent(
-    name: json['name'] as String,
-    displayName: json['displayName'] as String,
-    priority: json['priority'] as int,
-    isFallback: json['isFallback'] as bool,
-    mlDisabled: json['mlDisabled'] as bool,
-    inputContextNames:
-        (json['inputContextNames'] as List)?.map((e) => e as String)?.toList(),
-    events: (json['events'] as List)?.map((e) => e as String)?.toList(),
-    action: json['action'] as String,
-    resetContexts: json['resetContexts'] as bool,
-    parameters: (json['parameters'] as List)
-        ?.map((e) => e == null
-            ? null
-            : IntentParameter.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    messages: (json['messages'] as List)
-        ?.map((e) =>
-            e == null ? null : Message.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    rootFollowupIntentName: json['rootFollowupIntentName'] as String,
-    parentFollowUpIntentName: json['parentFollowUpIntentName'] as String,
-    followUpIntentInfo: (json['followUpIntentInfo'] as List)
-        ?.map((e) => e == null
-            ? null
-            : FollowUpIntentInfo.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    name: json['name'] as String?,
+    displayName: json['displayName'] as String?,
+    priority: json['priority'] as int?,
+    isFallback: json['isFallback'] as bool?,
+    mlDisabled: json['mlDisabled'] as bool?,
+    inputContextNames: (json['inputContextNames'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    events:
+        (json['events'] as List<dynamic>?)?.map((e) => e as String).toList(),
+    action: json['action'] as String?,
+    resetContexts: json['resetContexts'] as bool?,
+    parameters: (json['parameters'] as List<dynamic>?)
+        ?.map((e) => IntentParameter.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    messages: (json['messages'] as List<dynamic>?)
+        ?.map((e) => Message.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    rootFollowupIntentName: json['rootFollowupIntentName'] as String?,
+    parentFollowUpIntentName: json['parentFollowUpIntentName'] as String?,
+    followUpIntentInfo: (json['followUpIntentInfo'] as List<dynamic>?)
+        ?.map((e) => FollowUpIntentInfo.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -56,12 +53,11 @@ Map<String, dynamic> _$IntentToJson(Intent instance) {
   writeNotNull('action', instance.action);
   writeNotNull('resetContexts', instance.resetContexts);
   writeNotNull(
-      'parameters', instance.parameters?.map((e) => e?.toJson())?.toList());
-  writeNotNull(
-      'messages', instance.messages?.map((e) => e?.toJson())?.toList());
+      'parameters', instance.parameters?.map((e) => e.toJson()).toList());
+  writeNotNull('messages', instance.messages?.map((e) => e.toJson()).toList());
   writeNotNull('rootFollowupIntentName', instance.rootFollowupIntentName);
   writeNotNull('parentFollowUpIntentName', instance.parentFollowUpIntentName);
   writeNotNull('followUpIntentInfo',
-      instance.followUpIntentInfo?.map((e) => e?.toJson())?.toList());
+      instance.followUpIntentInfo?.map((e) => e.toJson()).toList());
   return val;
 }

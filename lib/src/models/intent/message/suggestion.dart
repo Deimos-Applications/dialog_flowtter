@@ -11,7 +11,7 @@ part 'suggestion.g.dart';
 /// {@endtemplate}
 class Suggestion extends Equatable {
   /// The text shown the in the suggestion chip.
-  final String title;
+  final String? title;
 
   /// {@macro suggestion_template}
   Suggestion({
@@ -26,7 +26,7 @@ class Suggestion extends Equatable {
   Map<String, dynamic> toJson() => _$SuggestionToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         title,
       ];
 }

@@ -8,21 +8,18 @@ part of 'query_parameters.dart';
 
 QueryParameters _$QueryParametersFromJson(Map<String, dynamic> json) {
   return QueryParameters(
-    timeZone: json['timeZone'] as String,
+    timeZone: json['timeZone'] as String?,
     geoLocation: json['geoLocation'] == null
         ? null
         : LatLng.fromJson(json['geoLocation'] as Map<String, dynamic>),
-    contexts: (json['contexts'] as List)
-        ?.map((e) =>
-            e == null ? null : Context.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    resetContexts: json['resetContexts'] as bool,
-    sessionEntityTypes: (json['sessionEntityTypes'] as List)
-        ?.map((e) => e == null
-            ? null
-            : SessionEntityType.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    payload: json['payload'] as Map<String, dynamic>,
+    contexts: (json['contexts'] as List<dynamic>?)
+        ?.map((e) => Context.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    resetContexts: json['resetContexts'] as bool?,
+    sessionEntityTypes: (json['sessionEntityTypes'] as List<dynamic>?)
+        ?.map((e) => SessionEntityType.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    payload: json['payload'] as Map<String, dynamic>?,
     sentimentAnalysisRequestConfig:
         json['sentimentAnalysisRequestConfig'] == null
             ? null
@@ -42,11 +39,10 @@ Map<String, dynamic> _$QueryParametersToJson(QueryParameters instance) {
 
   writeNotNull('timeZone', instance.timeZone);
   writeNotNull('geoLocation', instance.geoLocation?.toJson());
-  writeNotNull(
-      'contexts', instance.contexts?.map((e) => e?.toJson())?.toList());
+  writeNotNull('contexts', instance.contexts?.map((e) => e.toJson()).toList());
   writeNotNull('resetContexts', instance.resetContexts);
   writeNotNull('sessionEntityTypes',
-      instance.sessionEntityTypes?.map((e) => e?.toJson())?.toList());
+      instance.sessionEntityTypes?.map((e) => e.toJson()).toList());
   writeNotNull('payload', instance.payload);
   writeNotNull('sentimentAnalysisRequestConfig',
       instance.sentimentAnalysisRequestConfig?.toJson());

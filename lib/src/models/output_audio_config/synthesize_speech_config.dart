@@ -19,14 +19,14 @@ class SynthesizeSpeechConfig extends Equatable {
   /// to the native 1.0 speed.
   ///
   /// **Any other values < 0.25 or > 4.0 will return an error**.
-  final double speakingRate;
+  final double? speakingRate;
 
   /// Speaking pitch, in the range [-20.0, 20.0].
   ///
   /// 20 means increase 20 semitones from the original pitch.
   ///
   /// -20 means decrease 20 semitones from the original pitch.
-  final double pitch;
+  final double? pitch;
 
   /// Volume gain (in dB) of the normal native volume supported by the
   /// specific voice, in the range [-96.0, 16.0].
@@ -42,16 +42,16 @@ class SynthesizeSpeechConfig extends Equatable {
   ///
   /// We _**strongly**_ recommend not to exceed +10 (dB) as there's usually no
   /// effective increase in loudness for any value greater than that.
-  final double volumeGainDb;
+  final double? volumeGainDb;
 
   /// An identifier which selects 'audio effects' profiles that are applied
   /// on (post synthesized) text to speech.
   ///
   /// Effects are applied on top of each other in the order they are given.
-  final List<String> effectsProfileId;
+  final List<String>? effectsProfileId;
 
   /// The desired voice of the synthesized audio.
-  final VoiceSelectionParams voice;
+  final VoiceSelectionParams? voice;
 
   /// {@macro synthesize_speech_config_template}
   SynthesizeSpeechConfig({
@@ -70,7 +70,7 @@ class SynthesizeSpeechConfig extends Equatable {
   Map<String, dynamic> toJson() => _$SynthesizeSpeechConfigToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         speakingRate,
         pitch,
         volumeGainDb,

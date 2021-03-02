@@ -10,10 +10,10 @@ part 'follow_up_intent_info.g.dart';
 /// {@endtemplate}
 class FollowUpIntentInfo extends Equatable {
   /// The unique identifier of the followup intent.
-  final String followUpIntentName;
+  final String? followUpIntentName;
 
   /// The unique identifier of the followup intent's parent.
-  final String parentFollowUpIntentName;
+  final String? parentFollowUpIntentName;
 
   /// {@macro follow_up_intent_info_template}
   FollowUpIntentInfo({
@@ -29,7 +29,7 @@ class FollowUpIntentInfo extends Equatable {
   Map<String, dynamic> toJson() => _$FollowUpIntentInfoToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         followUpIntentName,
         parentFollowUpIntentName,
       ];

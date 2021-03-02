@@ -9,13 +9,15 @@ part of 'event_input.dart';
 EventInput _$EventInputFromJson(Map<String, dynamic> json) {
   return EventInput(
     name: json['name'] as String,
-    parameters: json['parameters'] as Map<String, dynamic>,
+    parameters: json['parameters'] as Map<String, dynamic>?,
     languageCode: json['languageCode'] as String,
   );
 }
 
 Map<String, dynamic> _$EventInputToJson(EventInput instance) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'name': instance.name,
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -23,8 +25,7 @@ Map<String, dynamic> _$EventInputToJson(EventInput instance) {
     }
   }
 
-  writeNotNull('name', instance.name);
   writeNotNull('parameters', instance.parameters);
-  writeNotNull('languageCode', instance.languageCode);
+  val['languageCode'] = instance.languageCode;
   return val;
 }

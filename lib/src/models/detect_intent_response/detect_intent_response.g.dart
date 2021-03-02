@@ -12,7 +12,7 @@ DetectIntentResponse _$DetectIntentResponseFromJson(Map<String, dynamic> json) {
     queryResult: json['queryResult'] == null
         ? null
         : QueryResult.fromJson(json['queryResult'] as Map<String, dynamic>),
-    outputAudio: json['outputAudio'] as String,
+    outputAudio: json['outputAudio'] as String?,
     outputAudioConfig: json['outputAudioConfig'] == null
         ? null
         : OutputAudioConfig.fromJson(
@@ -22,7 +22,9 @@ DetectIntentResponse _$DetectIntentResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$DetectIntentResponseToJson(
     DetectIntentResponse instance) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'responseId': instance.responseId,
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -30,7 +32,6 @@ Map<String, dynamic> _$DetectIntentResponseToJson(
     }
   }
 
-  writeNotNull('responseId', instance.responseId);
   writeNotNull('queryResult', instance.queryResult?.toJson());
   writeNotNull('outputAudio', instance.outputAudio);
   writeNotNull('outputAudioConfig', instance.outputAudioConfig?.toJson());

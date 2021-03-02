@@ -8,9 +8,9 @@ part of 'context.dart';
 
 Context _$ContextFromJson(Map<String, dynamic> json) {
   return Context(
-    name: json['name'] as String,
-    lifespanCount: json['lifespanCount'] as int,
-    parameters: json['parameters'] as Map<String, dynamic>,
+    name: json['name'] as String?,
+    lifespanCount: json['lifespanCount'] as int?,
+    parameters: json['parameters'] as Map<String, dynamic>?,
   );
 }
 

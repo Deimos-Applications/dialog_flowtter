@@ -8,7 +8,7 @@ part of 'open_uri_action.dart';
 
 OpenUriAction _$OpenUriActionFromJson(Map<String, dynamic> json) {
   return OpenUriAction(
-    uri: json['uri'] as String,
+    uri: json['uri'] as String?,
   );
 }
 

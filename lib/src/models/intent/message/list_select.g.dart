@@ -8,12 +8,11 @@ part of 'list_select.dart';
 
 ListSelect _$ListSelectFromJson(Map<String, dynamic> json) {
   return ListSelect(
-    title: json['title'] as String,
-    subtitle: json['subtitle'] as String,
-    items: (json['items'] as List)
-        ?.map((e) =>
-            e == null ? null : DialogItem.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    title: json['title'] as String?,
+    subtitle: json['subtitle'] as String?,
+    items: (json['items'] as List<dynamic>?)
+        ?.map((e) => DialogItem.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -28,6 +27,6 @@ Map<String, dynamic> _$ListSelectToJson(ListSelect instance) {
 
   writeNotNull('title', instance.title);
   writeNotNull('subtitle', instance.subtitle);
-  writeNotNull('items', instance.items?.map((e) => e?.toJson())?.toList());
+  writeNotNull('items', instance.items?.map((e) => e.toJson()).toList());
   return val;
 }

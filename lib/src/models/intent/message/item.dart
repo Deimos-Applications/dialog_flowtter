@@ -13,16 +13,16 @@ part 'item.g.dart';
 /// {@endtemplate}
 class DialogItem extends Equatable {
   /// Additional information about this option.
-  final SelectItemInfo info;
+  final SelectItemInfo? info;
 
   /// The title of the item.
-  final String title;
+  final String? title;
 
   /// The main text describing the item.
-  final String description;
+  final String? description;
 
   /// The image to display.
-  final DialogImage image;
+  final DialogImage? image;
 
   /// {@macro item_template}
   DialogItem({
@@ -40,7 +40,7 @@ class DialogItem extends Equatable {
   Map<String, dynamic> toJson() => _$DialogItemToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         info,
         title,
         description,

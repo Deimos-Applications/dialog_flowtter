@@ -12,10 +12,10 @@ part 'basic_card_button.g.dart';
 /// {@endtemplate}
 class BasicCardButton extends Equatable {
   /// The title of the button.
-  final String title;
+  final String? title;
 
   /// Action to take when a user taps on the button.
-  final OpenUriAction openUriAction;
+  final OpenUriAction? openUriAction;
 
   /// {@macro basic_card_button_template}
   BasicCardButton({
@@ -31,7 +31,7 @@ class BasicCardButton extends Equatable {
   Map<String, dynamic> toJson() => _$BasicCardButtonToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         title,
         openUriAction,
       ];

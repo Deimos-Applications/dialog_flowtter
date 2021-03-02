@@ -58,13 +58,13 @@ class DialogAuthCredentials extends Equatable {
   static const String _kProjectIdJsonKey = "project_id";
 
   /// The project id used by DialogFlow
-  final String projectId;
+  final String? projectId;
 
   /// The serviceAccountCredentials needed to make the OAuth2 authentication
-  final ServiceAccountCredentials serviceAccountCredentials;
+  final ServiceAccountCredentials? serviceAccountCredentials;
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         projectId,
         serviceAccountCredentials,
       ];

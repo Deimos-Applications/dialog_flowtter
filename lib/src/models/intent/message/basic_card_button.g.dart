@@ -8,7 +8,7 @@ part of 'basic_card_button.dart';
 
 BasicCardButton _$BasicCardButtonFromJson(Map<String, dynamic> json) {
   return BasicCardButton(
-    title: json['title'] as String,
+    title: json['title'] as String?,
     openUriAction: json['openUriAction'] == null
         ? null
         : OpenUriAction.fromJson(json['openUriAction'] as Map<String, dynamic>),

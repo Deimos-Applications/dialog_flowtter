@@ -28,7 +28,7 @@ part 'sentiment_analysis_result.g.dart';
 /// {@endtemplate}
 class SentimentAnalysisResult extends Equatable {
   /// The sentiment analysis result for [queryText].
-  final Sentiment queryTextSentiment;
+  final Sentiment? queryTextSentiment;
 
   /// {@macro sentiment_analysis_result_template}
   SentimentAnalysisResult({
@@ -43,7 +43,7 @@ class SentimentAnalysisResult extends Equatable {
   Map<String, dynamic> toJson() => _$SentimentAnalysisResultToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         queryTextSentiment,
       ];
 }

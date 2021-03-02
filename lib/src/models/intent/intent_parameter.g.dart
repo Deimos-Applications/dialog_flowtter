@@ -8,14 +8,15 @@ part of 'intent_parameter.dart';
 
 IntentParameter _$IntentParameterFromJson(Map<String, dynamic> json) {
   return IntentParameter(
-    name: json['name'] as String,
-    displayName: json['displayName'] as String,
-    value: json['value'] as String,
-    defaultValue: json['defaultValue'] as String,
-    entityTypeDisplayName: json['entityTypeDisplayName'] as String,
-    mandatory: json['mandatory'] as bool,
-    prompts: (json['prompts'] as List)?.map((e) => e as String)?.toList(),
-    isList: json['isList'] as bool,
+    name: json['name'] as String?,
+    displayName: json['displayName'] as String?,
+    value: json['value'] as String?,
+    defaultValue: json['defaultValue'] as String?,
+    entityTypeDisplayName: json['entityTypeDisplayName'] as String?,
+    mandatory: json['mandatory'] as bool?,
+    prompts:
+        (json['prompts'] as List<dynamic>?)?.map((e) => e as String).toList(),
+    isList: json['isList'] as bool?,
   );
 }
 

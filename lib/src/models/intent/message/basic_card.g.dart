@@ -8,17 +8,15 @@ part of 'basic_card.dart';
 
 BasicCard _$BasicCardFromJson(Map<String, dynamic> json) {
   return BasicCard(
-    title: json['title'] as String,
-    subtitle: json['subtitle'] as String,
-    formattedText: json['formattedText'] as String,
+    title: json['title'] as String?,
+    subtitle: json['subtitle'] as String?,
+    formattedText: json['formattedText'] as String?,
     image: json['image'] == null
         ? null
         : DialogImage.fromJson(json['image'] as Map<String, dynamic>),
-    buttons: (json['buttons'] as List)
-        ?.map((e) => e == null
-            ? null
-            : BasicCardButton.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    buttons: (json['buttons'] as List<dynamic>?)
+        ?.map((e) => BasicCardButton.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -35,6 +33,6 @@ Map<String, dynamic> _$BasicCardToJson(BasicCard instance) {
   writeNotNull('subtitle', instance.subtitle);
   writeNotNull('formattedText', instance.formattedText);
   writeNotNull('image', instance.image?.toJson());
-  writeNotNull('buttons', instance.buttons?.map((e) => e?.toJson())?.toList());
+  writeNotNull('buttons', instance.buttons?.map((e) => e.toJson()).toList());
   return val;
 }

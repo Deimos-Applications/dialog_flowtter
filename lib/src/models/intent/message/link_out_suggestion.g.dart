@@ -8,8 +8,8 @@ part of 'link_out_suggestion.dart';
 
 LinkOutSuggestion _$LinkOutSuggestionFromJson(Map<String, dynamic> json) {
   return LinkOutSuggestion(
-    destinationName: json['destinationName'] as String,
-    uri: json['uri'] as String,
+    destinationName: json['destinationName'] as String?,
+    uri: json['uri'] as String?,
   );
 }
 

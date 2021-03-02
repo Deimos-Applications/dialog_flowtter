@@ -8,27 +8,25 @@ part of 'query_result.dart';
 
 QueryResult _$QueryResultFromJson(Map<String, dynamic> json) {
   return QueryResult(
-    queryText: json['queryText'] as String,
-    languageCode: json['languageCode'] as String,
+    queryText: json['queryText'] as String?,
+    languageCode: json['languageCode'] as String?,
     speechRecognitionConfidence:
-        (json['speechRecognitionConfidence'] as num)?.toDouble(),
-    action: json['action'] as String,
-    parameters: json['parameters'] as Map<String, dynamic>,
-    allRequiredParamsPresent: json['allRequiredParamsPresent'] as bool,
-    fulfillmentMessages: (json['fulfillmentMessages'] as List)
-        ?.map((e) =>
-            e == null ? null : Message.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    outputContexts: (json['outputContexts'] as List)
-        ?.map((e) =>
-            e == null ? null : Context.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        (json['speechRecognitionConfidence'] as num?)?.toDouble(),
+    action: json['action'] as String?,
+    parameters: json['parameters'] as Map<String, dynamic>?,
+    allRequiredParamsPresent: json['allRequiredParamsPresent'] as bool?,
+    fulfillmentMessages: (json['fulfillmentMessages'] as List<dynamic>?)
+        ?.map((e) => Message.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    outputContexts: (json['outputContexts'] as List<dynamic>?)
+        ?.map((e) => Context.fromJson(e as Map<String, dynamic>))
+        .toList(),
     intent: json['intent'] == null
         ? null
         : Intent.fromJson(json['intent'] as Map<String, dynamic>),
     intentDetectionConfidence:
-        (json['intentDetectionConfidence'] as num)?.toDouble(),
-    diagnosticInfo: json['diagnosticInfo'] as Map<String, dynamic>,
+        (json['intentDetectionConfidence'] as num?)?.toDouble(),
+    diagnosticInfo: json['diagnosticInfo'] as Map<String, dynamic>?,
     sentimentAnalysisResult: json['sentimentAnalysisResult'] == null
         ? null
         : SentimentAnalysisResult.fromJson(
@@ -53,9 +51,9 @@ Map<String, dynamic> _$QueryResultToJson(QueryResult instance) {
   writeNotNull('parameters', instance.parameters);
   writeNotNull('allRequiredParamsPresent', instance.allRequiredParamsPresent);
   writeNotNull('fulfillmentMessages',
-      instance.fulfillmentMessages?.map((e) => e?.toJson())?.toList());
+      instance.fulfillmentMessages?.map((e) => e.toJson()).toList());
   writeNotNull('outputContexts',
-      instance.outputContexts?.map((e) => e?.toJson())?.toList());
+      instance.outputContexts?.map((e) => e.toJson()).toList());
   writeNotNull('intent', instance.intent?.toJson());
   writeNotNull('intentDetectionConfidence', instance.intentDetectionConfidence);
   writeNotNull('diagnosticInfo', instance.diagnosticInfo);
