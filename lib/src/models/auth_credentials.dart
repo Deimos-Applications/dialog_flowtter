@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:googleapis_auth/auth_io.dart';
+import 'package:googleapis_auth/auth.dart';
 import 'package:http/http.dart' as http;
 
 import '../utils/http_util.dart';
