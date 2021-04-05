@@ -1,6 +1,6 @@
 name: dialog_flowtter
 description: A Flutter implementation of DialogFlow improved. Get your chatbots ready in no time.
-version: 0.3.0-nullsafety.0
+version: 0.3.0
 homepage: https://github.com/Deimos-Applications/dialog_flowtter
 repository: https://github.com/Deimos-Applications/dialog_flowtter
 issue_tracker: https://github.com/Deimos-Applications/dialog_flowtter/issues

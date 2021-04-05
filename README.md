@@ -57,7 +57,7 @@ We have plans on testing and adding support for _Windows_, _Linux_ and _MacOS_ a
 
     ```yaml
     dependencies:
-        dialog_flowtter: ^0.3.0-nullsafety.0
+        dialog_flowtter: ^0.3.0
     ```
 
 2. Make sure you add your dialog_flow_auth.json to the `pubspec.yaml` assets:

@@ -1,3 +1,9 @@
+# 0.3.0
+
+* Stable release for null-safety
+* Updated dependencies
+* Changed deprecated imports for `googleapis_auth`
+
 # 0.3.0-nullsafety.0
 
 * Added support for null-safety
