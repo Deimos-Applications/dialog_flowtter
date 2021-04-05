@@ -8,8 +8,8 @@ part of 'lat_lng.dart';
 
 LatLng _$LatLngFromJson(Map<String, dynamic> json) {
   return LatLng(
-    latitude: (json['latitude'] as num)?.toDouble(),
-    longitude: (json['longitude'] as num)?.toDouble(),
+    latitude: (json['latitude'] as num?)?.toDouble(),
+    longitude: (json['longitude'] as num?)?.toDouble(),
   );
 }
 

@@ -15,7 +15,7 @@ class VoiceSelectionParams extends Equatable {
   ///
   /// If not set, the service will choose a voice based on the other
   /// parameters such as [languageCode] and [ssmlGender].
-  final String name;
+  final String? name;
 
   /// The preferred gender of the voice.
   ///
@@ -27,7 +27,7 @@ class VoiceSelectionParams extends Equatable {
   /// If a voice of the appropriate gender is not available, the synthesizer
   /// should substitute a voice with a different gender rather than failing
   /// the request.
-  final SsmlVoiceGender ssmlGender;
+  final SsmlVoiceGender? ssmlGender;
 
   /// {@macro voice_selection_params_template}
   VoiceSelectionParams({
@@ -43,7 +43,7 @@ class VoiceSelectionParams extends Equatable {
   Map<String, dynamic> toJson() => _$VoiceSelectionParamsToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         name,
         ssmlGender,
       ];

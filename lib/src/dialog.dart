@@ -1,9 +1,10 @@
 import 'dart:convert' show jsonDecode, jsonEncode;
 
 import 'package:equatable/equatable.dart' show EquatableConfig;
-import 'package:googleapis_auth/auth.dart' show AutoRefreshingAuthClient;
+import 'package:googleapis_auth/googleapis_auth.dart'
+    show AutoRefreshingAuthClient;
 import 'package:googleapis_auth/auth_io.dart' show clientViaServiceAccount;
-import 'package:meta/meta.dart' show required;
+import 'package:http/http.dart';
 
 import 'models/auth_credentials.dart';
 import 'models/detect_intent_response/detect_intent_response.dart';
@@ -100,14 +101,14 @@ class DialogFlowtter {
   /// {@macro session_recommend_template}
   final String sessionId;
 
-  AutoRefreshingAuthClient _client;
+  AutoRefreshingAuthClient? _client;
 
   /// The associated [projectId]
   ///
   /// If not specified, it would be obtained from the JSON given
   ///
   /// You can override this at any time given and the plugin will use it
-  String projectId;
+  String? projectId;
 
   /// The auth credentials needed by [DialogFlowtter] to authenticate the API
   /// http calls
@@ -117,7 +118,7 @@ class DialogFlowtter {
   DialogFlowtter({
     this.projectId,
     this.sessionId = _kDefaultSessionId,
-    @required this.credentials,
+    required this.credentials,
   }) {
     EquatableConfig.stringify = true;
   }
@@ -127,8 +128,8 @@ class DialogFlowtter {
   /// {@macro dialog_flowtter_template}
   factory DialogFlowtter.fromJson(
     Map<String, dynamic> json, {
-    String projectId,
-    String sessionId,
+    String? projectId,
+    String sessionId = _kDefaultSessionId,
   }) {
     DialogAuthCredentials creds = DialogAuthCredentials.fromJson(json);
     return DialogFlowtter(
@@ -146,8 +147,8 @@ class DialogFlowtter {
   /// {@macro dialog_flowtter_template}
   static Future<DialogFlowtter> fromFile({
     String path = kDefaultJsonPath,
-    String projectId,
-    String sessionId,
+    String? projectId,
+    String sessionId = _kDefaultSessionId,
   }) async {
     DialogAuthCredentials creds = await DialogAuthCredentials.fromFile(path);
     return DialogFlowtter(
@@ -163,8 +164,8 @@ class DialogFlowtter {
   /// {@macro dialog_flowtter_template}
   static Future<DialogFlowtter> fromNetwork(
     String url, {
-    String projectId,
-    String sessionId,
+    String? projectId,
+    String sessionId = _kDefaultSessionId,
   }) async {
     DialogAuthCredentials creds = await DialogAuthCredentials.fromNetwork(url);
     return DialogFlowtter(
@@ -181,25 +182,30 @@ class DialogFlowtter {
   /// entity types to be updated, which in turn might affect results of future
   /// queries.
   Future<DetectIntentResponse> detectIntent({
-    QueryParameters queryParams,
-    @required QueryInput queryInput,
-    OutputAudioConfig audioConfig,
+    QueryParameters? queryParams,
+    required QueryInput queryInput,
+    OutputAudioConfig? audioConfig,
   }) async {
     if (_client == null) await _updateHttpClient();
 
-    var body = HttpUtil.getBody(
+    final body = HttpUtil.getBody(
       queryParams: queryParams,
       queryInput: queryInput,
       audioConfig: audioConfig,
     );
 
-    var response = await _client.post(
-      '$kDialogFlowUrl/$kDialogFlowApiVersion/${HttpUtil.getFormatedSession(projectId, sessionId)}:detectIntent',
+    final uri = Uri.parse(
+      '$kDialogFlowUrl/$kDialogFlowApiVersion/'
+      '${HttpUtil.getFormatedSession(projectId, sessionId)}:detectIntent',
+    );
+
+    final Response response = await _client!.post(
+      uri,
       body: jsonEncode(body),
     );
 
     if (!HttpUtil.isValidStatusCode(response.statusCode)) {
-      var _json = jsonDecode(response.body)["error"];
+      final _json = jsonDecode(response.body)["error"];
       throw Exception(
         "${_json['status']}: ${_json['message']}, (${_json['code']})",
       );
@@ -214,7 +220,7 @@ class DialogFlowtter {
     DialogAuthCredentials credentials,
   ) async {
     AutoRefreshingAuthClient client = await clientViaServiceAccount(
-      credentials.serviceAccountCredentials,
+      credentials.serviceAccountCredentials!,
       [_kDialogFlowScope],
     );
     return client;
@@ -234,5 +240,5 @@ class DialogFlowtter {
   }
 
   /// The authenticated client used by the package to make http requests
-  AutoRefreshingAuthClient get client => _client;
+  AutoRefreshingAuthClient? get client => _client;
 }

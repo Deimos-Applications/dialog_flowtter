@@ -17,10 +17,10 @@ part 'lat_lng.g.dart';
 /// {@endtemplate}
 class LatLng extends Equatable {
   /// The latitude in degrees. It must be in the range [-90.0, +90.0].
-  final double latitude;
+  final double? latitude;
 
   /// The longitude in degrees. It must be in the range [-180.0, +180.0].
-  final double longitude;
+  final double? longitude;
 
   /// {@macro lat_lng_template}
   LatLng({
@@ -35,7 +35,7 @@ class LatLng extends Equatable {
   Map<String, dynamic> toJson() => _$LatLngToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         latitude,
         longitude,
       ];

@@ -11,10 +11,10 @@ part 'select_item_info.g.dart';
 class SelectItemInfo extends Equatable {
   /// A unique key that will be sent back to the agent if this response is
   /// given.
-  final String key;
+  final String? key;
 
   /// A list of synonyms that can also be used to trigger this item in dialog.
-  final List<String> synonyms;
+  final List<String>? synonyms;
 
   /// {@macro select_item_info_template}
   SelectItemInfo({
@@ -30,7 +30,7 @@ class SelectItemInfo extends Equatable {
   Map<String, dynamic> toJson() => _$SelectItemInfoToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         key,
         synonyms,
       ];

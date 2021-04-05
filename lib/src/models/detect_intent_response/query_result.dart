@@ -27,12 +27,12 @@ class QueryResult extends Equatable {
   ///
   /// - If automatic spell correction is enabled, [queryText] will contain the
   /// corrected user input.
-  final String queryText;
+  final String? queryText;
 
   /// The language that was triggered during intent detection.
   /// See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language)
   /// for a list of the currently supported language codes.
-  final String languageCode;
+  final String? languageCode;
 
   /// The Speech recognition confidence between 0.0 and 1.0. A higher
   /// number indicates an estimated greater likelihood that the recognized
@@ -43,10 +43,10 @@ class QueryResult extends Equatable {
   /// field isn't set for StreamingDetectIntent since the streaming endpoint
   /// has separate confidence estimates per portion of the audio in
   /// StreamingRecognitionResult.
-  final double speechRecognitionConfidence;
+  final double? speechRecognitionConfidence;
 
   /// The action name from the matched intent.
-  final String action;
+  final String? action;
 
   /// {@template parameters_template}
   /// This is a map of extracted parameters (MapKey, MapValue) pairs:
@@ -64,7 +64,7 @@ class QueryResult extends Equatable {
   /// For more details see:
   /// https://cloud.google.com/dialogflow/docs/reference/rest/v2/DetectIntentResponse#QueryResult
   /// {@endtemplate}
-  final Map<String, dynamic> parameters;
+  final Map<String, dynamic>? parameters;
 
   ///	This field is set to:
   ///
@@ -73,23 +73,23 @@ class QueryResult extends Equatable {
   ///
   /// - [true] if all required parameter values have been collected, or if the
   /// matched intent doesn't contain any required parameters.
-  final bool allRequiredParamsPresent;
+  final bool? allRequiredParamsPresent;
 
   /// The collection of rich messages to present to the user.
-  final List<Message> fulfillmentMessages;
+  final List<Message>? fulfillmentMessages;
 
   /// The collection of output contexts.
   ///
   /// If applicable, [outputContexts.parameters] contains entries with name
   /// [<parameter name>.original] containing the original parameter
   /// values before the query.
-  final List<Context> outputContexts;
+  final List<Context>? outputContexts;
 
   /// The intent that matched the conversational query.
   ///
   /// Some, not all fields are filled in this message, including but
   /// not limited to: [name], [displayName], [endInteraction] and [isFallback].
-  final Intent intent;
+  final Intent? intent;
 
   /// The intent detection confidence.
   ///
@@ -103,7 +103,7 @@ class QueryResult extends Equatable {
   ///
   /// If there are multiple [knowledgeAnswers] messages, this value is set
   /// to the greatest [knowledgeAnswers.match_confidence] value in the list.
-  final double intentDetectionConfidence;
+  final double? intentDetectionConfidence;
 
   /// Free-form diagnostic information for the associated detect intent request.
   ///
@@ -114,11 +114,11 @@ class QueryResult extends Equatable {
   ///
   /// - webhook call latency
   /// - webhook errors
-  final Map<String, dynamic> diagnosticInfo;
+  final Map<String, dynamic>? diagnosticInfo;
 
   /// The sentiment analysis result, which depends on the
   /// [sentimentAnalysisRequestConfig] specified in the request.
-  final SentimentAnalysisResult sentimentAnalysisResult;
+  final SentimentAnalysisResult? sentimentAnalysisResult;
 
   /// {@macro query_result_template}
   QueryResult({
@@ -144,7 +144,7 @@ class QueryResult extends Equatable {
   Map<String, dynamic> toJson() => _$QueryResultToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         queryText,
         languageCode,
         speechRecognitionConfidence,

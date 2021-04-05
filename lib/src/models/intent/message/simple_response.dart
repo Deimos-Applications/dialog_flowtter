@@ -14,17 +14,17 @@ class SimpleResponse extends Equatable {
   /// The plain text of the speech output.
   ///
   /// Mutually exclusive with ssml.
-  final String textToSpeech;
+  final String? textToSpeech;
 
   /// One of textToSpeech or ssml must be provided.
   ///
   /// Structured spoken response to the user in the SSML format.
   ///
   /// Mutually exclusive with textToSpeech.
-  final String ssml;
+  final String? ssml;
 
   /// The text to display.
-  final String displayText;
+  final String? displayText;
 
   /// {@macro simple_response_template}
   SimpleResponse({
@@ -41,7 +41,7 @@ class SimpleResponse extends Equatable {
   Map<String, dynamic> toJson() => _$SimpleResponseToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         textToSpeech,
         ssml,
         displayText,

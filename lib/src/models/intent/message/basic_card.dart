@@ -13,19 +13,19 @@ part 'basic_card.g.dart';
 /// {@endtemplate}
 class BasicCard extends Equatable {
   /// The title of the card.
-  final String title;
+  final String? title;
 
   /// The subtitle of the card.
-  final String subtitle;
+  final String? subtitle;
 
   /// The body text of the card.
-  final String formattedText;
+  final String? formattedText;
 
   /// The image for the card.
-  final DialogImage image;
+  final DialogImage? image;
 
   /// The collection of card buttons.
-  final List<BasicCardButton> buttons;
+  final List<BasicCardButton>? buttons;
 
   /// {@macro basic_card_template}
   BasicCard({
@@ -44,7 +44,7 @@ class BasicCard extends Equatable {
   Map<String, dynamic> toJson() => _$BasicCardToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         title,
         subtitle,
         formattedText,

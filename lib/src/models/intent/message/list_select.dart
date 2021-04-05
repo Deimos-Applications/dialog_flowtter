@@ -12,13 +12,13 @@ part 'list_select.g.dart';
 /// {@endtemplate}
 class ListSelect extends Equatable {
   /// The overall title of the list.
-  final String title;
+  final String? title;
 
   /// Subtitle of the list.
-  final String subtitle;
+  final String? subtitle;
 
   /// List items.
-  final List<DialogItem> items;
+  final List<DialogItem>? items;
 
   /// {@macro list_select_template}
   ListSelect({
@@ -35,7 +35,7 @@ class ListSelect extends Equatable {
   Map<String, dynamic> toJson() => _$ListSelectToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         title,
         subtitle,
         items,

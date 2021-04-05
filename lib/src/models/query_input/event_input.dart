@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meta/meta.dart' show required;
 
 part 'event_input.g.dart';
 
@@ -45,7 +44,7 @@ class EventInput extends Equatable {
   /// For more details see:
   /// https://cloud.google.com/dialogflow/docs/reference/rest/v2/QueryInput#EventInput
   /// {@endtemplate}
-  final Map<String, dynamic> parameters;
+  final Map<String, dynamic>? parameters;
 
   /// The language of this conversational query.
   ///
@@ -58,11 +57,10 @@ class EventInput extends Equatable {
 
   /// {@macro event_input_template}
   EventInput({
-    @required this.name,
+    required this.name,
     this.parameters,
-    @required this.languageCode,
-  })  : assert(name != null),
-        assert(languageCode != null);
+    required this.languageCode,
+  });
 
   ///
   factory EventInput.fromJson(Map<String, dynamic> json) =>
@@ -72,7 +70,7 @@ class EventInput extends Equatable {
   Map<String, dynamic> toJson() => _$EventInputToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         name,
         parameters,
         languageCode,

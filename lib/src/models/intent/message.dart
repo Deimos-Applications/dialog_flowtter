@@ -22,49 +22,49 @@ part 'message.g.dart';
 /// {@endtemplate}
 class Message extends Equatable {
   /// The text response.
-  final DialogText text;
+  final DialogText? text;
 
   /// The image response.
-  final DialogImage image;
+  final DialogImage? image;
 
   /// The quick replies response.
-  final QuickReplies quickReplies;
+  final QuickReplies? quickReplies;
 
   /// The card response.
-  final DialogCard card;
+  final DialogCard? card;
 
   /// A custom platform-specific response.
-  final Map<String, dynamic> payload;
+  final Map<String, dynamic>? payload;
 
   /// The voice and text-only responses for Actions on Google.
-  final List<SimpleResponse> simpleResponses;
+  final List<SimpleResponse>? simpleResponses;
 
   /// The basic card response for Actions on Google.
-  final BasicCard basicCard;
+  final BasicCard? basicCard;
 
   /// The suggestion chips for Actions on Google.
-  final List<Suggestion> suggestions;
+  final List<Suggestion>? suggestions;
 
   /// The link out suggestion chip for Actions on Google.
-  final LinkOutSuggestion linkOutSuggestion;
+  final LinkOutSuggestion? linkOutSuggestion;
 
   /// The list card response for Actions on Google.
-  final ListSelect listSelect;
+  final ListSelect? listSelect;
 
   /// The carousel card response for Actions on Google.
-  final CarouselSelect carouselSelect;
+  final CarouselSelect? carouselSelect;
 
   //? Create model if necessary
   /// Browse carousel card for Actions on Google.
-  final Map<String, dynamic> browseCarouselCard;
+  final Map<String, dynamic>? browseCarouselCard;
 
   //? Create model if necessary
   /// Table card for Actions on Google.
-  final Map<String, dynamic> tableCard;
+  final Map<String, dynamic>? tableCard;
 
   //? Create model if necessary
   /// The media content card for Actions on Google.
-  final Map<String, dynamic> mediaContent;
+  final Map<String, dynamic>? mediaContent;
 
   /// {@macro message_template}
   Message({
@@ -85,7 +85,7 @@ class Message extends Equatable {
   });
 
   /// The type of the message received
-  MessageType get type {
+  MessageType? get type {
     if (text != null) return MessageType.text;
     if (image != null) return MessageType.image;
     if (quickReplies != null) return MessageType.quickReply;
@@ -111,7 +111,7 @@ class Message extends Equatable {
   Map<String, dynamic> toJson() => _$MessageToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         text,
         image,
         quickReplies,

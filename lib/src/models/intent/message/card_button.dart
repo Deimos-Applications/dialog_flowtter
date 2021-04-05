@@ -10,10 +10,10 @@ part 'card_button.g.dart';
 /// {@endtemplate}
 class CardButton extends Equatable {
   /// The text to show on the button.
-  final String text;
+  final String? text;
 
   /// The text to send back to the Dialogflow API or a URI to open.
-  final String postback;
+  final String? postback;
 
   /// {@macro card_button_template}
   CardButton({
@@ -29,7 +29,7 @@ class CardButton extends Equatable {
   Map<String, dynamic> toJson() => _$CardButtonToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         text,
         postback,
       ];

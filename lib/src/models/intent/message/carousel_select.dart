@@ -12,7 +12,7 @@ part 'carousel_select.g.dart';
 /// {@endtemplate}
 class CarouselSelect extends Equatable {
   /// Carousel items.
-  final List<DialogItem> items;
+  final List<DialogItem>? items;
 
   /// {@macro carousel_select_template}
   CarouselSelect({
@@ -27,7 +27,7 @@ class CarouselSelect extends Equatable {
   Map<String, dynamic> toJson() => _$CarouselSelectToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         items,
       ];
 }

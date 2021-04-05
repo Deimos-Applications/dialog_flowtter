@@ -8,9 +8,10 @@ part of 'quick_replies.dart';
 
 QuickReplies _$QuickRepliesFromJson(Map<String, dynamic> json) {
   return QuickReplies(
-    title: json['title'] as String,
-    quickReplies:
-        (json['quickReplies'] as List)?.map((e) => e as String)?.toList(),
+    title: json['title'] as String?,
+    quickReplies: (json['quickReplies'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
   );
 }
 

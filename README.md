@@ -26,6 +26,8 @@
 
 # About the package
 
+> Dialog Flow on Flutter, now with Null Safety support!
+
 DialogFlowtter is a package that helps you to build integrations with DialogFlow easier and faster.
 
 - Authenticate with Google Auth Json
@@ -55,7 +57,7 @@ We have plans on testing and adding support for _Windows_, _Linux_ and _MacOS_ a
 
     ```yaml
     dependencies:
-        dialog_flowtter: ^0.1.5
+        dialog_flowtter: ^0.3.0
     ```
 
 2. Make sure you add your dialog_flow_auth.json to the `pubspec.yaml` assets:
@@ -106,6 +108,8 @@ You can set your _DialogFlow_ authentication keys in various ways.
   ```dart
   DialogAuthCredentials credentials = await DialogAuthCredentials.fromNetwork(url);
   ```
+
+  > This method is asynchronous!
 
 Then, pass your credentials to you `DialogFlowtter` class
 
@@ -174,7 +178,7 @@ You can access the info returned by DialogFlow from the `DetectIntentResponse` t
     queryInput: QueryInput(text: TextInput(text: "Hi")),
   );
   
-  String textResponse = response.text;
+  String? textResponse = response.text;
 
   print(textResponse); // Hi, how may I help you?
 ```
@@ -190,7 +194,7 @@ See [Message](https://github.com/Deimos-Applications/dialog_flowtter/blob/master
     queryInput: QueryInput(text: TextInput(text: "Hi")),
   );
   
-  Message messageResponse = response.message;
+  Message? messageResponse = response.message;
 ```
 
 ### Get audio from the response
@@ -207,8 +211,8 @@ See [Message](https://github.com/Deimos-Applications/dialog_flowtter/blob/master
 
 2. Retrieve the audio from the response
 ```dart
-  String audioBase64 = response.outputAudio;
-  Uint8List audioBytes = response.outputAudioBytes;
+  String? audioBase64 = response.outputAudio;
+  Uint8List? audioBytes = response.outputAudioBytes;
 ```
 
 3. Play the audio response with your favorite plugin!
@@ -218,7 +222,7 @@ See [Message](https://github.com/Deimos-Applications/dialog_flowtter/blob/master
 ### Get the response type of the message
 
 ```dart
-  MessageType messageType = response.message.type;
+  MessageType? messageType = response.message.type;
 
   print(messageType); /// MessageType.card
 ```
@@ -285,12 +289,13 @@ Make sure to `dispose` your `DialogFlowtter` instance whenever you're done using
 
 ## Too many models
 
-We have coded almost every model that you may need to use when implementing this package so you don't have to work with annoying `Map<String, dynamic>` objects. Feel free to ask for any model that is missing to be added to the package.
+We have coded almost every Dialog Flow model that you may need to use when implementing this package so you don't have to work with annoying `Map<String, dynamic>` objects. Feel free to ask for any model that is missing to be added to the package.
 
 > The models that were not coded are included as annoying `Map<String, dynamic>` and are tagged with the `//? Create model if necessary`.
 
 # TO-DO
 
+- [x] Add support for null safety 
 - [x] Add support for cards, images, etc.
 - [x] Memory, file and remote auth JSON
 - [ ] Secure DialogFlow auth JSON

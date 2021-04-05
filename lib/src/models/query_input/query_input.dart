@@ -23,10 +23,10 @@ class QueryInput extends Equatable {
   // https://cloud.google.com/dialogflow/es/docs/reference/rest/v2beta1/QueryInput
 
   /// The natural language text to be processed.
-  final TextInput text;
+  final TextInput? text;
 
   /// The event to be processed.
-  final EventInput eventInput;
+  final EventInput? eventInput;
 
   /// {@macro query_input_template}
   QueryInput({
@@ -42,7 +42,7 @@ class QueryInput extends Equatable {
   Map<String, dynamic> toJson() => _$QueryInputToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         text,
         eventInput,
       ];

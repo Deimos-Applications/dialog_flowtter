@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:googleapis_auth/auth_io.dart';
+import 'package:googleapis_auth/googleapis_auth.dart';
 import 'package:http/http.dart' as http;
 
 import '../utils/http_util.dart';
@@ -40,8 +40,10 @@ class DialogAuthCredentials extends Equatable {
 
   /// Creates the auth credentials with the JSON obtained from the given [url]
   static Future<DialogAuthCredentials> fromNetwork(String url) async {
+    final uri = Uri.parse(url);
+
     final response = await http.get(
-      url,
+      uri,
       headers: {
         "Accept": "application/json",
       },
@@ -56,13 +58,13 @@ class DialogAuthCredentials extends Equatable {
   static const String _kProjectIdJsonKey = "project_id";
 
   /// The project id used by DialogFlow
-  final String projectId;
+  final String? projectId;
 
   /// The serviceAccountCredentials needed to make the OAuth2 authentication
-  final ServiceAccountCredentials serviceAccountCredentials;
+  final ServiceAccountCredentials? serviceAccountCredentials;
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         projectId,
         serviceAccountCredentials,
       ];

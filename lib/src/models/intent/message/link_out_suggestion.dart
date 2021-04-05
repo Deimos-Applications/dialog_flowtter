@@ -11,10 +11,10 @@ part 'link_out_suggestion.g.dart';
 /// {@endtemplate}
 class LinkOutSuggestion extends Equatable {
   /// The name of the app or site this chip is linking to.
-  final String destinationName;
+  final String? destinationName;
 
   /// The URI of the app or site to open when the user taps the suggestion chip.
-  final String uri;
+  final String? uri;
 
   /// {@macro link_out_suggestion_template}
   LinkOutSuggestion({
@@ -30,7 +30,7 @@ class LinkOutSuggestion extends Equatable {
   Map<String, dynamic> toJson() => _$LinkOutSuggestionToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         destinationName,
         uri,
       ];

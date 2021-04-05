@@ -12,7 +12,7 @@ class SentimentAnalysisRequestConfig extends Equatable {
   /// Instructs the service to perform sentiment analysis on queryText.
   ///
   /// If not provided, sentiment analysis is not performed on queryText.
-  final bool analyzeQueryTextSentiment;
+  final bool? analyzeQueryTextSentiment;
 
   /// {@macro sentiment_analysis_request_config_template}
   SentimentAnalysisRequestConfig({
@@ -27,7 +27,7 @@ class SentimentAnalysisRequestConfig extends Equatable {
   Map<String, dynamic> toJson() => _$SentimentAnalysisRequestConfigToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         analyzeQueryTextSentiment,
       ];
 }

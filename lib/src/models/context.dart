@@ -28,7 +28,7 @@ part 'context.g.dart';
 /// {@endtemplate}
 class Context extends Equatable {
   /// The unique identifier of the context.
-  final String name;
+  final String? name;
 
   /// The number of conversational query requests after which the context
   /// expires. The default is 0.
@@ -37,7 +37,7 @@ class Context extends Equatable {
   ///
   /// Contexts expire automatically after 20 minutes if there are no
   /// matching queries.
-  final int lifespanCount;
+  final int? lifespanCount;
 
   /// {@template parameters_template}
   /// This is a map of extracted parameters (MapKey, MapValue) pairs:
@@ -55,7 +55,7 @@ class Context extends Equatable {
   /// For more details see:
   /// https://cloud.google.com/dialogflow/docs/reference/rest/v2/DetectIntentResponse#QueryResult
   /// {@endtemplate}
-  final Map<String, dynamic> parameters;
+  final Map<String, dynamic>? parameters;
 
   /// {@macro context_template}
   Context({
@@ -72,7 +72,7 @@ class Context extends Equatable {
   Map<String, dynamic> toJson() => _$ContextToJson(this);
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         name,
         lifespanCount,
         parameters,

@@ -8,7 +8,7 @@ part of 'text.dart';
 
 DialogText _$DialogTextFromJson(Map<String, dynamic> json) {
   return DialogText(
-    text: (json['text'] as List)?.map((e) => e as String)?.toList(),
+    text: (json['text'] as List<dynamic>?)?.map((e) => e as String).toList(),
   );
 }
 
