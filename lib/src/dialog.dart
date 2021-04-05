@@ -1,7 +1,8 @@
 import 'dart:convert' show jsonDecode, jsonEncode;
 
 import 'package:equatable/equatable.dart' show EquatableConfig;
-import 'package:googleapis_auth/auth.dart' show AutoRefreshingAuthClient;
+import 'package:googleapis_auth/googleapis_auth.dart'
+    show AutoRefreshingAuthClient;
 import 'package:googleapis_auth/auth_io.dart' show clientViaServiceAccount;
 import 'package:http/http.dart';
 
