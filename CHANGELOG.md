@@ -1,3 +1,7 @@
+# 0.3.1
+* Added `platform` prop to `Message` class
+* Added rich responses section to README
+
 # 0.3.0
 
 * Stable release for null-safety

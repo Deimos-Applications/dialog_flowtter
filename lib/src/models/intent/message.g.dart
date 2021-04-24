@@ -8,6 +8,8 @@ part of 'message.dart';
 
 Message _$MessageFromJson(Map<String, dynamic> json) {
   return Message(
+    platform: _$enumDecodeNullable(_$DialogPlatformEnumMap, json['platform']) ??
+        DialogPlatform.PLATFORM_UNSPECIFIED,
     text: json['text'] == null
         ? null
         : DialogText.fromJson(json['text'] as Map<String, dynamic>),
@@ -48,7 +50,9 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$MessageToJson(Message instance) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'platform': _$DialogPlatformEnumMap[instance.platform],
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -74,3 +78,53 @@ Map<String, dynamic> _$MessageToJson(Message instance) {
   writeNotNull('mediaContent', instance.mediaContent);
   return val;
 }
+
+K _$enumDecode<K, V>(
+  Map<K, V> enumValues,
+  Object? source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    throw ArgumentError(
+      'A value must be provided. Supported values: '
+      '${enumValues.values.join(', ')}',
+    );
+  }
+
+  return enumValues.entries.singleWhere(
+    (e) => e.value == source,
+    orElse: () {
+      if (unknownValue == null) {
+        throw ArgumentError(
+          '`$source` is not one of the supported values: '
+          '${enumValues.values.join(', ')}',
+        );
+      }
+      return MapEntry(unknownValue, enumValues.values.first);
+    },
+  ).key;
+}
+
+K? _$enumDecodeNullable<K, V>(
+  Map<K, V> enumValues,
+  dynamic source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
+}
+
+const _$DialogPlatformEnumMap = {
+  DialogPlatform.PLATFORM_UNSPECIFIED: 'PLATFORM_UNSPECIFIED',
+  DialogPlatform.FACEBOOK: 'FACEBOOK',
+  DialogPlatform.SLACK: 'SLACK',
+  DialogPlatform.TELEGRAM: 'TELEGRAM',
+  DialogPlatform.KIK: 'KIK',
+  DialogPlatform.SKYPE: 'SKYPE',
+  DialogPlatform.LINE: 'LINE',
+  DialogPlatform.VIBER: 'VIBER',
+  DialogPlatform.ACTIONS_ON_GOOGLE: 'ACTIONS_ON_GOOGLE',
+  DialogPlatform.GOOGLE_HANGOUTS: 'GOOGLE_HANGOUTS',
+};

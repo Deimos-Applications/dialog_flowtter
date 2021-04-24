@@ -57,7 +57,7 @@ We have plans on testing and adding support for _Windows_, _Linux_ and _MacOS_ a
 
     ```yaml
     dependencies:
-        dialog_flowtter: ^0.3.0
+        dialog_flowtter: ^0.3.1
     ```
 
 2. Make sure you add your dialog_flow_auth.json to the `pubspec.yaml` assets:
@@ -188,6 +188,7 @@ You can access the info returned by DialogFlow from the `DetectIntentResponse` t
 ### Get the message from the response
 
 See [Message](https://github.com/Deimos-Applications/dialog_flowtter/blob/master/lib/src/models/intent/message.dart) for more info on what the model properties can be
+Also, check [this issue](https://github.com/Deimos-Applications/dialog_flowtter/issues/9) to see how to create and use [Rich Responses](https://cloud.google.com/dialogflow/es/docs/intents-rich-messages) like cards and carousels
 
 ```dart
   DetectIntentResponse response = await dialogFlowtter.detectIntent(

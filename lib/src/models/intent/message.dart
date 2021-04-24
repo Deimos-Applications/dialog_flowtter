@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../enums/message_type.dart';
+import '../../enums/platform.dart';
 import 'message/basic_card.dart';
 import 'message/card.dart';
 import 'message/carousel_select.dart';
@@ -21,6 +22,10 @@ part 'message.g.dart';
 /// A rich response message.
 /// {@endtemplate}
 class Message extends Equatable {
+  /// The platform that this message is intended for.
+  @JsonKey(defaultValue: DialogPlatform.PLATFORM_UNSPECIFIED)
+  final DialogPlatform platform;
+
   /// The text response.
   final DialogText? text;
 
@@ -68,6 +73,7 @@ class Message extends Equatable {
 
   /// {@macro message_template}
   Message({
+    this.platform = DialogPlatform.PLATFORM_UNSPECIFIED,
     this.text,
     this.image,
     this.quickReplies,
@@ -85,7 +91,7 @@ class Message extends Equatable {
   });
 
   /// The type of the message received
-  MessageType? get type {
+  MessageType get type {
     if (text != null) return MessageType.text;
     if (image != null) return MessageType.image;
     if (quickReplies != null) return MessageType.quickReply;
@@ -100,7 +106,7 @@ class Message extends Equatable {
     if (browseCarouselCard != null) return MessageType.browseCarouselCard;
     if (tableCard != null) return MessageType.tableCard;
     if (mediaContent != null) return MessageType.mediaContent;
-    return null;
+    return MessageType.text;
   }
 
   ///
@@ -112,6 +118,7 @@ class Message extends Equatable {
 
   @override
   List<Object?> get props => [
+        platform,
         text,
         image,
         quickReplies,
