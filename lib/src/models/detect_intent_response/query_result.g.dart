@@ -18,6 +18,8 @@ QueryResult _$QueryResultFromJson(Map<String, dynamic> json) {
     fulfillmentMessages: (json['fulfillmentMessages'] as List<dynamic>?)
         ?.map((e) => Message.fromJson(e as Map<String, dynamic>))
         .toList(),
+    webhookSource: json['webhookSource'] as String?,
+    webhookPayload: json['webhookPayload'] as Map<String, dynamic>?,
     outputContexts: (json['outputContexts'] as List<dynamic>?)
         ?.map((e) => Context.fromJson(e as Map<String, dynamic>))
         .toList(),
@@ -52,6 +54,8 @@ Map<String, dynamic> _$QueryResultToJson(QueryResult instance) {
   writeNotNull('allRequiredParamsPresent', instance.allRequiredParamsPresent);
   writeNotNull('fulfillmentMessages',
       instance.fulfillmentMessages?.map((e) => e.toJson()).toList());
+  writeNotNull('webhookPayload', instance.webhookPayload);
+  writeNotNull('webhookSource', instance.webhookSource);
   writeNotNull('outputContexts',
       instance.outputContexts?.map((e) => e.toJson()).toList());
   writeNotNull('intent', instance.intent?.toJson());
