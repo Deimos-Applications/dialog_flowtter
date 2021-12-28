@@ -77,7 +77,9 @@ class QueryResult extends Equatable {
 
   /// The collection of rich messages to present to the user.
   final List<Message>? fulfillmentMessages;
-
+  ///To detect the input from webhook and have payload from webhook
+  final String? webhookSource;
+  final Map<String, dynamic>? webhookPayload;
   /// The collection of output contexts.
   ///
   /// If applicable, [outputContexts.parameters] contains entries with name
@@ -129,6 +131,8 @@ class QueryResult extends Equatable {
     this.parameters,
     this.allRequiredParamsPresent,
     this.fulfillmentMessages,
+    this.webhookSource,
+    this.webhookPayload,
     this.outputContexts,
     this.intent,
     this.intentDetectionConfidence,
@@ -152,6 +156,8 @@ class QueryResult extends Equatable {
         parameters,
         allRequiredParamsPresent,
         fulfillmentMessages,
+        webhookSource,
+        webhookPayload,
         outputContexts,
         intent,
         intentDetectionConfidence,
