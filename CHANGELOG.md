@@ -1,3 +1,7 @@
+# 0.3.2
+* Upgraded packages
+* Updated `QueryInput` model event name from `eventInput` to `event`
+
 # 0.3.1
 * Added `platform` prop to `Message` class
 * Added rich responses section to README
