@@ -14,9 +14,12 @@ QueryResult _$QueryResultFromJson(Map<String, dynamic> json) => QueryResult(
       action: json['action'] as String?,
       parameters: json['parameters'] as Map<String, dynamic>?,
       allRequiredParamsPresent: json['allRequiredParamsPresent'] as bool?,
+      cancelsSlotFilling: json['cancelsSlotFilling'] as bool? ?? false,
       fulfillmentMessages: (json['fulfillmentMessages'] as List<dynamic>?)
           ?.map((e) => Message.fromJson(e as Map<String, dynamic>))
           .toList(),
+      webhookSource: json['webhookSource'] as String?,
+      webhookPayload: json['webhookPayload'] as Map<String, dynamic>?,
       outputContexts: (json['outputContexts'] as List<dynamic>?)
           ?.map((e) => Context.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -48,8 +51,11 @@ Map<String, dynamic> _$QueryResultToJson(QueryResult instance) {
   writeNotNull('action', instance.action);
   writeNotNull('parameters', instance.parameters);
   writeNotNull('allRequiredParamsPresent', instance.allRequiredParamsPresent);
+  val['cancelsSlotFilling'] = instance.cancelsSlotFilling;
   writeNotNull('fulfillmentMessages',
       instance.fulfillmentMessages?.map((e) => e.toJson()).toList());
+  writeNotNull('webhookSource', instance.webhookSource);
+  writeNotNull('webhookPayload', instance.webhookPayload);
   writeNotNull('outputContexts',
       instance.outputContexts?.map((e) => e.toJson()).toList());
   writeNotNull('intent', instance.intent?.toJson());

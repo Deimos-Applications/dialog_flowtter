@@ -75,8 +75,20 @@ class QueryResult extends Equatable {
   /// matched intent doesn't contain any required parameters.
   final bool? allRequiredParamsPresent;
 
+  /// Indicates whether the conversational query triggers a cancellation for
+  /// slot filling.
+  final bool cancelsSlotFilling;
+
   /// The collection of rich messages to present to the user.
   final List<Message>? fulfillmentMessages;
+
+  /// If the query was fulfilled by a webhook call, this field is set to
+  /// the value of the source field returned in the webhook response.
+  final String? webhookSource;
+
+  /// If the query was fulfilled by a webhook call, this field is set to the
+  /// value of the payload field returned in the webhook response.
+  final Map<String, dynamic>? webhookPayload;
 
   /// The collection of output contexts.
   ///
@@ -128,7 +140,10 @@ class QueryResult extends Equatable {
     this.action,
     this.parameters,
     this.allRequiredParamsPresent,
+    this.cancelsSlotFilling = false,
     this.fulfillmentMessages,
+    this.webhookSource,
+    this.webhookPayload,
     this.outputContexts,
     this.intent,
     this.intentDetectionConfidence,
@@ -151,7 +166,10 @@ class QueryResult extends Equatable {
         action,
         parameters,
         allRequiredParamsPresent,
+        cancelsSlotFilling,
         fulfillmentMessages,
+        webhookSource,
+        webhookPayload,
         outputContexts,
         intent,
         intentDetectionConfidence,

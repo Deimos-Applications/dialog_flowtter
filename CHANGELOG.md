@@ -1,3 +1,6 @@
+# 0.3.3
+* Added `cancelsSlotFilling`, `webhookSource` and `webhookPayload` to `QueryResult` model
+
 # 0.3.2
 * Upgraded packages
 * Updated `QueryInput` model event name from `eventInput` to `event`
