@@ -6,13 +6,11 @@ part of 'context.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Context _$ContextFromJson(Map<String, dynamic> json) {
-  return Context(
-    name: json['name'] as String?,
-    lifespanCount: json['lifespanCount'] as int?,
-    parameters: json['parameters'] as Map<String, dynamic>?,
-  );
-}
+Context _$ContextFromJson(Map<String, dynamic> json) => Context(
+      name: json['name'] as String?,
+      lifespanCount: json['lifespanCount'] as int?,
+      parameters: json['parameters'] as Map<String, dynamic>?,
+    );
 
 Map<String, dynamic> _$ContextToJson(Context instance) {
   final val = <String, dynamic>{};

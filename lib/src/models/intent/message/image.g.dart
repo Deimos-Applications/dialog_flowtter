@@ -6,12 +6,10 @@ part of 'image.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DialogImage _$DialogImageFromJson(Map<String, dynamic> json) {
-  return DialogImage(
-    imageUri: json['imageUri'] as String?,
-    accessibilityText: json['accessibilityText'] as String?,
-  );
-}
+DialogImage _$DialogImageFromJson(Map<String, dynamic> json) => DialogImage(
+      imageUri: json['imageUri'] as String?,
+      accessibilityText: json['accessibilityText'] as String?,
+    );
 
 Map<String, dynamic> _$DialogImageToJson(DialogImage instance) {
   final val = <String, dynamic>{};

@@ -7,14 +7,13 @@ part of 'sentiment_analysis_result.dart';
 // **************************************************************************
 
 SentimentAnalysisResult _$SentimentAnalysisResultFromJson(
-    Map<String, dynamic> json) {
-  return SentimentAnalysisResult(
-    queryTextSentiment: json['queryTextSentiment'] == null
-        ? null
-        : Sentiment.fromJson(
-            json['queryTextSentiment'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    SentimentAnalysisResult(
+      queryTextSentiment: json['queryTextSentiment'] == null
+          ? null
+          : Sentiment.fromJson(
+              json['queryTextSentiment'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$SentimentAnalysisResultToJson(
     SentimentAnalysisResult instance) {

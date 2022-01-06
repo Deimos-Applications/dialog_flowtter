@@ -6,14 +6,14 @@ part of 'basic_card_button.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BasicCardButton _$BasicCardButtonFromJson(Map<String, dynamic> json) {
-  return BasicCardButton(
-    title: json['title'] as String?,
-    openUriAction: json['openUriAction'] == null
-        ? null
-        : OpenUriAction.fromJson(json['openUriAction'] as Map<String, dynamic>),
-  );
-}
+BasicCardButton _$BasicCardButtonFromJson(Map<String, dynamic> json) =>
+    BasicCardButton(
+      title: json['title'] as String?,
+      openUriAction: json['openUriAction'] == null
+          ? null
+          : OpenUriAction.fromJson(
+              json['openUriAction'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$BasicCardButtonToJson(BasicCardButton instance) {
   final val = <String, dynamic>{};

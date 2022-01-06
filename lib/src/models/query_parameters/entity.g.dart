@@ -6,13 +6,12 @@ part of 'entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Entity _$EntityFromJson(Map<String, dynamic> json) {
-  return Entity(
-    value: json['value'] as String?,
-    synonyms:
-        (json['synonyms'] as List<dynamic>?)?.map((e) => e as String).toList(),
-  );
-}
+Entity _$EntityFromJson(Map<String, dynamic> json) => Entity(
+      value: json['value'] as String?,
+      synonyms: (json['synonyms'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+    );
 
 Map<String, dynamic> _$EntityToJson(Entity instance) {
   final val = <String, dynamic>{};

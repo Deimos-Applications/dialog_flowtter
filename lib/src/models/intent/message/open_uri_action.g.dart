@@ -6,11 +6,10 @@ part of 'open_uri_action.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OpenUriAction _$OpenUriActionFromJson(Map<String, dynamic> json) {
-  return OpenUriAction(
-    uri: json['uri'] as String?,
-  );
-}
+OpenUriAction _$OpenUriActionFromJson(Map<String, dynamic> json) =>
+    OpenUriAction(
+      uri: json['uri'] as String?,
+    );
 
 Map<String, dynamic> _$OpenUriActionToJson(OpenUriAction instance) {
   final val = <String, dynamic>{};

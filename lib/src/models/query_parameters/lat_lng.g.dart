@@ -6,12 +6,10 @@ part of 'lat_lng.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-LatLng _$LatLngFromJson(Map<String, dynamic> json) {
-  return LatLng(
-    latitude: (json['latitude'] as num?)?.toDouble(),
-    longitude: (json['longitude'] as num?)?.toDouble(),
-  );
-}
+LatLng _$LatLngFromJson(Map<String, dynamic> json) => LatLng(
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
+    );
 
 Map<String, dynamic> _$LatLngToJson(LatLng instance) {
   final val = <String, dynamic>{};

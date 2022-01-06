@@ -6,16 +6,14 @@ part of 'query_input.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-QueryInput _$QueryInputFromJson(Map<String, dynamic> json) {
-  return QueryInput(
-    text: json['text'] == null
-        ? null
-        : TextInput.fromJson(json['text'] as Map<String, dynamic>),
-    eventInput: json['eventInput'] == null
-        ? null
-        : EventInput.fromJson(json['eventInput'] as Map<String, dynamic>),
-  );
-}
+QueryInput _$QueryInputFromJson(Map<String, dynamic> json) => QueryInput(
+      text: json['text'] == null
+          ? null
+          : TextInput.fromJson(json['text'] as Map<String, dynamic>),
+      event: json['event'] == null
+          ? null
+          : EventInput.fromJson(json['event'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$QueryInputToJson(QueryInput instance) {
   final val = <String, dynamic>{};
@@ -27,6 +25,6 @@ Map<String, dynamic> _$QueryInputToJson(QueryInput instance) {
   }
 
   writeNotNull('text', instance.text?.toJson());
-  writeNotNull('eventInput', instance.eventInput?.toJson());
+  writeNotNull('event', instance.event?.toJson());
   return val;
 }

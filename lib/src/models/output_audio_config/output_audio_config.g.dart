@@ -6,17 +6,17 @@ part of 'output_audio_config.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OutputAudioConfig _$OutputAudioConfigFromJson(Map<String, dynamic> json) {
-  return OutputAudioConfig(
-    audioEncoding: _$enumDecodeNullable(
-        _$OutputAudioEncodingEnumMap, json['audioEncoding']),
-    sampleRateHertz: json['sampleRateHertz'] as int?,
-    synthesizeSpeechConfig: json['synthesizeSpeechConfig'] == null
-        ? null
-        : SynthesizeSpeechConfig.fromJson(
-            json['synthesizeSpeechConfig'] as Map<String, dynamic>),
-  );
-}
+OutputAudioConfig _$OutputAudioConfigFromJson(Map<String, dynamic> json) =>
+    OutputAudioConfig(
+      audioEncoding: $enumDecodeNullable(
+              _$OutputAudioEncodingEnumMap, json['audioEncoding']) ??
+          OutputAudioEncoding.OUTPUT_AUDIO_ENCODING_LINEAR_16,
+      sampleRateHertz: json['sampleRateHertz'] as int?,
+      synthesizeSpeechConfig: json['synthesizeSpeechConfig'] == null
+          ? null
+          : SynthesizeSpeechConfig.fromJson(
+              json['synthesizeSpeechConfig'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$OutputAudioConfigToJson(OutputAudioConfig instance) {
   final val = <String, dynamic>{};
@@ -33,43 +33,6 @@ Map<String, dynamic> _$OutputAudioConfigToJson(OutputAudioConfig instance) {
   writeNotNull(
       'synthesizeSpeechConfig', instance.synthesizeSpeechConfig?.toJson());
   return val;
-}
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
-
-K? _$enumDecodeNullable<K, V>(
-  Map<K, V> enumValues,
-  dynamic source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
-  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
 }
 
 const _$OutputAudioEncodingEnumMap = {

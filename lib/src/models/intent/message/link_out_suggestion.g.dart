@@ -6,12 +6,11 @@ part of 'link_out_suggestion.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-LinkOutSuggestion _$LinkOutSuggestionFromJson(Map<String, dynamic> json) {
-  return LinkOutSuggestion(
-    destinationName: json['destinationName'] as String?,
-    uri: json['uri'] as String?,
-  );
-}
+LinkOutSuggestion _$LinkOutSuggestionFromJson(Map<String, dynamic> json) =>
+    LinkOutSuggestion(
+      destinationName: json['destinationName'] as String?,
+      uri: json['uri'] as String?,
+    );
 
 Map<String, dynamic> _$LinkOutSuggestionToJson(LinkOutSuggestion instance) {
   final val = <String, dynamic>{};

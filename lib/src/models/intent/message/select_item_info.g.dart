@@ -6,13 +6,13 @@ part of 'select_item_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SelectItemInfo _$SelectItemInfoFromJson(Map<String, dynamic> json) {
-  return SelectItemInfo(
-    key: json['key'] as String?,
-    synonyms:
-        (json['synonyms'] as List<dynamic>?)?.map((e) => e as String).toList(),
-  );
-}
+SelectItemInfo _$SelectItemInfoFromJson(Map<String, dynamic> json) =>
+    SelectItemInfo(
+      key: json['key'] as String?,
+      synonyms: (json['synonyms'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+    );
 
 Map<String, dynamic> _$SelectItemInfoToJson(SelectItemInfo instance) {
   final val = <String, dynamic>{};

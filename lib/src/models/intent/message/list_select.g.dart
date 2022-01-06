@@ -6,15 +6,13 @@ part of 'list_select.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ListSelect _$ListSelectFromJson(Map<String, dynamic> json) {
-  return ListSelect(
-    title: json['title'] as String?,
-    subtitle: json['subtitle'] as String?,
-    items: (json['items'] as List<dynamic>?)
-        ?.map((e) => DialogItem.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+ListSelect _$ListSelectFromJson(Map<String, dynamic> json) => ListSelect(
+      title: json['title'] as String?,
+      subtitle: json['subtitle'] as String?,
+      items: (json['items'] as List<dynamic>?)
+          ?.map((e) => DialogItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
 Map<String, dynamic> _$ListSelectToJson(ListSelect instance) {
   final val = <String, dynamic>{};

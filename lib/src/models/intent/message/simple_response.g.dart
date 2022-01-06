@@ -6,13 +6,12 @@ part of 'simple_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SimpleResponse _$SimpleResponseFromJson(Map<String, dynamic> json) {
-  return SimpleResponse(
-    textToSpeech: json['textToSpeech'] as String?,
-    ssml: json['ssml'] as String?,
-    displayText: json['displayText'] as String?,
-  );
-}
+SimpleResponse _$SimpleResponseFromJson(Map<String, dynamic> json) =>
+    SimpleResponse(
+      textToSpeech: json['textToSpeech'] as String?,
+      ssml: json['ssml'] as String?,
+      displayText: json['displayText'] as String?,
+    );
 
 Map<String, dynamic> _$SimpleResponseToJson(SimpleResponse instance) {
   final val = <String, dynamic>{};

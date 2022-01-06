@@ -6,14 +6,12 @@ part of 'quick_replies.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-QuickReplies _$QuickRepliesFromJson(Map<String, dynamic> json) {
-  return QuickReplies(
-    title: json['title'] as String?,
-    quickReplies: (json['quickReplies'] as List<dynamic>?)
-        ?.map((e) => e as String)
-        .toList(),
-  );
-}
+QuickReplies _$QuickRepliesFromJson(Map<String, dynamic> json) => QuickReplies(
+      title: json['title'] as String?,
+      quickReplies: (json['quickReplies'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+    );
 
 Map<String, dynamic> _$QuickRepliesToJson(QuickReplies instance) {
   final val = <String, dynamic>{};

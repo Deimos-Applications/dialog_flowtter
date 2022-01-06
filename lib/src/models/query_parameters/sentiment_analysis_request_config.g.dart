@@ -7,11 +7,11 @@ part of 'sentiment_analysis_request_config.dart';
 // **************************************************************************
 
 SentimentAnalysisRequestConfig _$SentimentAnalysisRequestConfigFromJson(
-    Map<String, dynamic> json) {
-  return SentimentAnalysisRequestConfig(
-    analyzeQueryTextSentiment: json['analyzeQueryTextSentiment'] as bool?,
-  );
-}
+        Map<String, dynamic> json) =>
+    SentimentAnalysisRequestConfig(
+      analyzeQueryTextSentiment:
+          json['analyzeQueryTextSentiment'] as bool? ?? false,
+    );
 
 Map<String, dynamic> _$SentimentAnalysisRequestConfigToJson(
     SentimentAnalysisRequestConfig instance) {

@@ -7,19 +7,19 @@ part of 'synthesize_speech_config.dart';
 // **************************************************************************
 
 SynthesizeSpeechConfig _$SynthesizeSpeechConfigFromJson(
-    Map<String, dynamic> json) {
-  return SynthesizeSpeechConfig(
-    speakingRate: (json['speakingRate'] as num?)?.toDouble(),
-    pitch: (json['pitch'] as num?)?.toDouble(),
-    volumeGainDb: (json['volumeGainDb'] as num?)?.toDouble(),
-    effectsProfileId: (json['effectsProfileId'] as List<dynamic>?)
-        ?.map((e) => e as String)
-        .toList(),
-    voice: json['voice'] == null
-        ? null
-        : VoiceSelectionParams.fromJson(json['voice'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    SynthesizeSpeechConfig(
+      speakingRate: (json['speakingRate'] as num?)?.toDouble(),
+      pitch: (json['pitch'] as num?)?.toDouble(),
+      volumeGainDb: (json['volumeGainDb'] as num?)?.toDouble(),
+      effectsProfileId: (json['effectsProfileId'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      voice: json['voice'] == null
+          ? null
+          : VoiceSelectionParams.fromJson(
+              json['voice'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$SynthesizeSpeechConfigToJson(
     SynthesizeSpeechConfig instance) {

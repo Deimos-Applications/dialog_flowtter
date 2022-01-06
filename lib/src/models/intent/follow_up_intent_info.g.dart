@@ -6,12 +6,11 @@ part of 'follow_up_intent_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FollowUpIntentInfo _$FollowUpIntentInfoFromJson(Map<String, dynamic> json) {
-  return FollowUpIntentInfo(
-    followUpIntentName: json['followUpIntentName'] as String?,
-    parentFollowUpIntentName: json['parentFollowUpIntentName'] as String?,
-  );
-}
+FollowUpIntentInfo _$FollowUpIntentInfoFromJson(Map<String, dynamic> json) =>
+    FollowUpIntentInfo(
+      followUpIntentName: json['followUpIntentName'] as String?,
+      parentFollowUpIntentName: json['parentFollowUpIntentName'] as String?,
+    );
 
 Map<String, dynamic> _$FollowUpIntentInfoToJson(FollowUpIntentInfo instance) {
   final val = <String, dynamic>{};

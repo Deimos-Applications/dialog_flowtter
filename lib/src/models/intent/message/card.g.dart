@@ -6,16 +6,14 @@ part of 'card.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DialogCard _$DialogCardFromJson(Map<String, dynamic> json) {
-  return DialogCard(
-    title: json['title'] as String?,
-    subtitle: json['subtitle'] as String?,
-    imageUri: json['imageUri'] as String?,
-    buttons: (json['buttons'] as List<dynamic>?)
-        ?.map((e) => CardButton.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+DialogCard _$DialogCardFromJson(Map<String, dynamic> json) => DialogCard(
+      title: json['title'] as String?,
+      subtitle: json['subtitle'] as String?,
+      imageUri: json['imageUri'] as String?,
+      buttons: (json['buttons'] as List<dynamic>?)
+          ?.map((e) => CardButton.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
 Map<String, dynamic> _$DialogCardToJson(DialogCard instance) {
   final val = <String, dynamic>{};

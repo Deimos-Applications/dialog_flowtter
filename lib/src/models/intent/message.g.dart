@@ -6,48 +6,47 @@ part of 'message.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Message _$MessageFromJson(Map<String, dynamic> json) {
-  return Message(
-    platform: _$enumDecodeNullable(_$DialogPlatformEnumMap, json['platform']) ??
-        DialogPlatform.PLATFORM_UNSPECIFIED,
-    text: json['text'] == null
-        ? null
-        : DialogText.fromJson(json['text'] as Map<String, dynamic>),
-    image: json['image'] == null
-        ? null
-        : DialogImage.fromJson(json['image'] as Map<String, dynamic>),
-    quickReplies: json['quickReplies'] == null
-        ? null
-        : QuickReplies.fromJson(json['quickReplies'] as Map<String, dynamic>),
-    card: json['card'] == null
-        ? null
-        : DialogCard.fromJson(json['card'] as Map<String, dynamic>),
-    payload: json['payload'] as Map<String, dynamic>?,
-    simpleResponses: (json['simpleResponses'] as List<dynamic>?)
-        ?.map((e) => SimpleResponse.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    basicCard: json['basicCard'] == null
-        ? null
-        : BasicCard.fromJson(json['basicCard'] as Map<String, dynamic>),
-    suggestions: (json['suggestions'] as List<dynamic>?)
-        ?.map((e) => Suggestion.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    linkOutSuggestion: json['linkOutSuggestion'] == null
-        ? null
-        : LinkOutSuggestion.fromJson(
-            json['linkOutSuggestion'] as Map<String, dynamic>),
-    listSelect: json['listSelect'] == null
-        ? null
-        : ListSelect.fromJson(json['listSelect'] as Map<String, dynamic>),
-    carouselSelect: json['carouselSelect'] == null
-        ? null
-        : CarouselSelect.fromJson(
-            json['carouselSelect'] as Map<String, dynamic>),
-    browseCarouselCard: json['browseCarouselCard'] as Map<String, dynamic>?,
-    tableCard: json['tableCard'] as Map<String, dynamic>?,
-    mediaContent: json['mediaContent'] as Map<String, dynamic>?,
-  );
-}
+Message _$MessageFromJson(Map<String, dynamic> json) => Message(
+      platform:
+          $enumDecodeNullable(_$DialogPlatformEnumMap, json['platform']) ??
+              DialogPlatform.PLATFORM_UNSPECIFIED,
+      text: json['text'] == null
+          ? null
+          : DialogText.fromJson(json['text'] as Map<String, dynamic>),
+      image: json['image'] == null
+          ? null
+          : DialogImage.fromJson(json['image'] as Map<String, dynamic>),
+      quickReplies: json['quickReplies'] == null
+          ? null
+          : QuickReplies.fromJson(json['quickReplies'] as Map<String, dynamic>),
+      card: json['card'] == null
+          ? null
+          : DialogCard.fromJson(json['card'] as Map<String, dynamic>),
+      payload: json['payload'] as Map<String, dynamic>?,
+      simpleResponses: (json['simpleResponses'] as List<dynamic>?)
+          ?.map((e) => SimpleResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      basicCard: json['basicCard'] == null
+          ? null
+          : BasicCard.fromJson(json['basicCard'] as Map<String, dynamic>),
+      suggestions: (json['suggestions'] as List<dynamic>?)
+          ?.map((e) => Suggestion.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      linkOutSuggestion: json['linkOutSuggestion'] == null
+          ? null
+          : LinkOutSuggestion.fromJson(
+              json['linkOutSuggestion'] as Map<String, dynamic>),
+      listSelect: json['listSelect'] == null
+          ? null
+          : ListSelect.fromJson(json['listSelect'] as Map<String, dynamic>),
+      carouselSelect: json['carouselSelect'] == null
+          ? null
+          : CarouselSelect.fromJson(
+              json['carouselSelect'] as Map<String, dynamic>),
+      browseCarouselCard: json['browseCarouselCard'] as Map<String, dynamic>?,
+      tableCard: json['tableCard'] as Map<String, dynamic>?,
+      mediaContent: json['mediaContent'] as Map<String, dynamic>?,
+    );
 
 Map<String, dynamic> _$MessageToJson(Message instance) {
   final val = <String, dynamic>{
@@ -77,43 +76,6 @@ Map<String, dynamic> _$MessageToJson(Message instance) {
   writeNotNull('tableCard', instance.tableCard);
   writeNotNull('mediaContent', instance.mediaContent);
   return val;
-}
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
-
-K? _$enumDecodeNullable<K, V>(
-  Map<K, V> enumValues,
-  dynamic source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
-  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
 }
 
 const _$DialogPlatformEnumMap = {

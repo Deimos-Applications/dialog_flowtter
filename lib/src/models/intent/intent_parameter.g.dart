@@ -6,19 +6,18 @@ part of 'intent_parameter.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-IntentParameter _$IntentParameterFromJson(Map<String, dynamic> json) {
-  return IntentParameter(
-    name: json['name'] as String?,
-    displayName: json['displayName'] as String?,
-    value: json['value'] as String?,
-    defaultValue: json['defaultValue'] as String?,
-    entityTypeDisplayName: json['entityTypeDisplayName'] as String?,
-    mandatory: json['mandatory'] as bool?,
-    prompts:
-        (json['prompts'] as List<dynamic>?)?.map((e) => e as String).toList(),
-    isList: json['isList'] as bool?,
-  );
-}
+IntentParameter _$IntentParameterFromJson(Map<String, dynamic> json) =>
+    IntentParameter(
+      name: json['name'] as String?,
+      displayName: json['displayName'] as String?,
+      value: json['value'] as String?,
+      defaultValue: json['defaultValue'] as String?,
+      entityTypeDisplayName: json['entityTypeDisplayName'] as String?,
+      mandatory: json['mandatory'] as bool?,
+      prompts:
+          (json['prompts'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      isList: json['isList'] as bool?,
+    );
 
 Map<String, dynamic> _$IntentParameterToJson(IntentParameter instance) {
   final val = <String, dynamic>{};

@@ -6,11 +6,9 @@ part of 'text.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DialogText _$DialogTextFromJson(Map<String, dynamic> json) {
-  return DialogText(
-    text: (json['text'] as List<dynamic>?)?.map((e) => e as String).toList(),
-  );
-}
+DialogText _$DialogTextFromJson(Map<String, dynamic> json) => DialogText(
+      text: (json['text'] as List<dynamic>?)?.map((e) => e as String).toList(),
+    );
 
 Map<String, dynamic> _$DialogTextToJson(DialogText instance) {
   final val = <String, dynamic>{};

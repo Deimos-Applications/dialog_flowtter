@@ -26,12 +26,12 @@ class QueryInput extends Equatable {
   final TextInput? text;
 
   /// The event to be processed.
-  final EventInput? eventInput;
+  final EventInput? event;
 
   /// {@macro query_input_template}
   QueryInput({
     this.text,
-    this.eventInput,
+    this.event,
   });
 
   ///
@@ -44,6 +44,6 @@ class QueryInput extends Equatable {
   @override
   List<Object?> get props => [
         text,
-        eventInput,
+        event,
       ];
 }

@@ -6,13 +6,13 @@ part of 'voice_selection_params.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-VoiceSelectionParams _$VoiceSelectionParamsFromJson(Map<String, dynamic> json) {
-  return VoiceSelectionParams(
-    name: json['name'] as String?,
-    ssmlGender:
-        _$enumDecodeNullable(_$SsmlVoiceGenderEnumMap, json['ssmlGender']),
-  );
-}
+VoiceSelectionParams _$VoiceSelectionParamsFromJson(
+        Map<String, dynamic> json) =>
+    VoiceSelectionParams(
+      name: json['name'] as String?,
+      ssmlGender:
+          $enumDecodeNullable(_$SsmlVoiceGenderEnumMap, json['ssmlGender']),
+    );
 
 Map<String, dynamic> _$VoiceSelectionParamsToJson(
     VoiceSelectionParams instance) {
@@ -27,43 +27,6 @@ Map<String, dynamic> _$VoiceSelectionParamsToJson(
   writeNotNull('name', instance.name);
   writeNotNull('ssmlGender', _$SsmlVoiceGenderEnumMap[instance.ssmlGender]);
   return val;
-}
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
-
-K? _$enumDecodeNullable<K, V>(
-  Map<K, V> enumValues,
-  dynamic source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
-  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
 }
 
 const _$SsmlVoiceGenderEnumMap = {
