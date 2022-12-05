@@ -12,11 +12,13 @@ part 'sentiment.g.dart';
 class Sentiment extends Equatable {
   /// Sentiment score between -1.0 (negative sentiment) and 1.0
   /// (positive sentiment).
+  @JsonKey(defaultValue: 0)
   final double score;
 
   /// A non-negative number in the [0, +inf) range, which represents the
   /// absolute magnitude of sentiment, regardless of score
   /// (positive or negative).
+  @JsonKey(defaultValue: 0)
   final double magnitude;
 
   /// {@macro sentiment_template}
